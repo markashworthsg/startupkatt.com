@@ -78,7 +78,13 @@ return [
         'tagline'     => 'The daily webcomic about a cat trying to build a startup.',
         'author'      => 'Startup Katt',
         'twitter'     => '@startupkatt',
+        'instagram'   => 'https://www.instagram.com/startupkatt',
         'description' => 'Startup Katt — a daily AI-generated webcomic following the misadventures of a cat founder. New strip every day. Read the full archive.',
+
+        // The human behind the comic. Linked from the footer of every page
+        // and from the /about page.
+        'creator'          => 'Mark Ashworth',
+        'creator_linkedin' => 'https://www.linkedin.com/in/markashworthsg/',
     ],
 
     /*

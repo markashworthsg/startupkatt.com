@@ -65,6 +65,9 @@
         @endif
     </figure>
 
+    {{-- Share --}}
+    <x-comic-share :comic="$comic" class="mt-6" />
+
     {{-- Bottom nav --}}
     <x-comic-nav :previous="$previous" :next="$next" class="mt-6" />
 

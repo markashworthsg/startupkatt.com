@@ -16,6 +16,7 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::get('/archive', [ComicController::class, 'archive'])->name('comics.archive');
+Route::get('/about', [ComicController::class, 'about'])->name('about');
 
 // Machine-readable endpoints
 Route::get('/feed', [FeedController::class, 'rss'])->name('feed');

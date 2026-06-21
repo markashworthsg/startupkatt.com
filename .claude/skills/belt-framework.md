@@ -5,7 +5,7 @@ description: |
   The BELT framework for evaluating SaaS product durability. Use when:
   - Writing clarity maps (every map must include a BELT analysis section)
   - Analyzing any SaaS product's positioning or retention
-  - Proposing or evaluating new Growth Pigeon features (run BELT against the feature to check if it builds on existing behavior, solves an enduring problem, creates lock-ins, and avoids transient distractions)
+  - Proposing or evaluating new Startup Katt features (run BELT against the feature to check if it builds on existing behavior, solves an enduring problem, creates lock-ins, and avoids transient distractions)
   - Advising whether a product will retain users
   BELT = Behavior, Enduring problems, Lock-ins, Transient distractions.
 allowed-tools:
@@ -19,7 +19,7 @@ allowed-tools:
 
 # BELT Framework: The SaaS Durability Test
 
-BELT is Growth Pigeon's proprietary framework for predicting whether a SaaS product will retain users or die. Every clarity map includes a BELT analysis. The framework tests four things, in order.
+BELT is Startup Katt's proprietary framework for predicting whether a SaaS product will retain users or die. Every clarity map includes a BELT analysis. The framework tests four things, in order.
 
 ## The Four Questions
 
@@ -115,7 +115,7 @@ The key insight: "This is a ritual. Rituals die when they become complicated."
 ```
 ## BELT Framework Analysis
 
-BELT is a durability test used in Growth Pigeon clarity maps: Behavior, Enduring problem, Lock-ins, Transient distractions.
+BELT is a durability test used in Startup Katt clarity maps: Behavior, Enduring problem, Lock-ins, Transient distractions.
 
 ### Behavior
 [2-3 paragraphs analyzing the existing behavior the product attaches to]

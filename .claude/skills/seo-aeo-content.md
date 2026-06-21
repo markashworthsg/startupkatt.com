@@ -19,7 +19,7 @@ allowed-tools:
 
 # SEO + AEO Content Strategy (2026)
 
-Apply these rules when writing any content for Growth Pigeon that should rank in search or get cited by AI.
+Apply these rules when writing any content for Startup Katt that should rank in search or get cited by AI.
 
 ## The Core Shift
 
@@ -44,7 +44,7 @@ If AI can answer the query in 2 sentences, don't write the article. Write about 
 ### 2. Lead With Original Data
 
 Every article should contain at least one of:
-- Proprietary data from Growth Pigeon tools (grader scores, clarity map patterns, engagement data)
+- Proprietary data from Startup Katt tools (grader scores, clarity map patterns, engagement data)
 - Specific before/after examples with real URLs
 - Aggregated patterns from real analyses ("we graded 100 SaaS homepages and found...")
 - Screenshots showing real results
@@ -74,8 +74,8 @@ Every article should have a clear action the reader can take immediately:
 
 ### 5. Build for Brand Search
 
-The goal is not just ranking. The goal is making people search "growth pigeon" by name. Every article should:
-- Reference Growth Pigeon tools by name
+The goal is not just ranking. The goal is making people search "startup katt" by name. Every article should:
+- Reference Startup Katt tools by name
 - Include unique frameworks (BELT, clarity map methodology)
 - Have a perspective that's identifiably Mark's voice
 - Give enough value that readers bookmark and return
@@ -112,7 +112,7 @@ The playbook for AEO is meaningfully different from SEO. HubSpot's 2026 analysis
 | Descriptive H1 (specific, not generic) | meaningful lift across engines |
 | Statistics, block quotes, TLDR / summary blocks | meaningful additional lift |
 
-We covered the practical AI-citation correlation analysis (and what to do with the freed-up budget) in [Backlinks Do Not Predict AI Citations](/articles/backlinks-dont-predict-ai-citations). When writing new articles for Growth Pigeon, treat the table above as the working AEO checklist.
+We covered the practical AI-citation correlation analysis (and what to do with the freed-up budget) in [Backlinks Do Not Predict AI Citations](/articles/backlinks-dont-predict-ai-citations). When writing new articles for Startup Katt, treat the table above as the working AEO checklist.
 
 **Recency matters quantifiably.** AI-cited content is ~25% more recent than Google-cited content (909 vs 1,047 average days since last updated). Adding a visible "last updated: [date]" line is one of the highest-leverage 5-minute fixes available.
 
@@ -174,7 +174,7 @@ Every article must have:
 Don't just track rankings. Track:
 - **Prompts, not keywords.** Find the actual questions your buyers type into ChatGPT / Perplexity. Track visibility per prompt, per location, per buyer-journey stage. This is the new ranking metric.
 - **AI citations** (does ChatGPT/Perplexity cite your content? by prompt and engine)
-- **Brand search volume** (are more people searching "growth pigeon"?)
+- **Brand search volume** (are more people searching "startup katt"?)
 - **Tool usage** (did the article drive grader/clarity map usage?)
 - **Email captures** (did readers give their email?)
 - **Social shares** (did readers share voluntarily?)

@@ -1,4 +1,4 @@
-{!! '<?xml version="1.0" encoding="UTF-8"?>' !!}
+{!! '<'.'?xml version="1.0" encoding="UTF-8"?'.'>' !!}
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>{{ route('home') }}</loc>
@@ -9,6 +9,11 @@
         <loc>{{ route('comics.archive') }}</loc>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>{{ route('about') }}</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
     </url>
     @foreach($comics as $comic)
     <url>

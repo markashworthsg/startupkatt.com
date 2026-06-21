@@ -51,4 +51,10 @@ class ComicController extends Controller
 
         return view('comics.archive', compact('comics'));
     }
+
+    /** About the comic and the human who makes it. */
+    public function about()
+    {
+        return view('about');
+    }
 }
