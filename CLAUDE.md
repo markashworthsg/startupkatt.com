@@ -21,6 +21,7 @@ Running gag: the cat is "Startup Katt" but everyone calls him "Startup Cat". Kee
 | Migration | `database/migrations/2026_01_01_000000_create_comics_table.php` |
 | Import / scheduling | `app/Console/Commands/ImportComics.php` |
 | Pages | `app/Http/Controllers/ComicController.php` |
+| Admin (metadata editor) | `app/Http/Controllers/Admin/ComicAdminController.php`, `app/Http/Middleware/AdminAuth.php`, `resources/views/admin/*` |
 | Feed / sitemap | `app/Http/Controllers/{FeedController,SitemapController}.php` |
 | Config (all knobs) | `config/comics.php` |
 | Reader view | `resources/views/comics/show.blade.php` |
@@ -65,9 +66,9 @@ Important: the apex domain `startupkatt.com` is THIS Laravel app. beehiiv should
 
 ## Things that are intentionally NOT here (good next tasks)
 
-- No admin/upload UI — publishing is folder-drop by design. An optional admin to edit `alt_text`/`caption`/`title` and override dates would be the highest-value addition.
-- No auth.
-- No `og-default.png` yet — add a 1200×630 fallback at `public/og-default.png`.
+- ~~No admin/upload UI~~ — a metadata editor now lives at `/admin` (edit `title`/`alt_text`/`caption`/`description` + override `published_at`), gated by a single HTTP Basic credential (`ADMIN_USERNAME`/`ADMIN_PASSWORD`, see `config/comics.php`). Publishing itself is still folder-drop by design — there's deliberately no upload form. A future add could let admins upload art or manage the schedule visually.
+- No general auth/users — the admin is a single shared HTTP Basic gate, nothing more.
+- ~~No `og-default.png`~~ — a 1200×630 fallback ships at `public/og-default.png`.
 - No image optimization/thumbnails — could generate WebP + responsive sizes on import.
 
 ## Commands

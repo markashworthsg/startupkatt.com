@@ -24,10 +24,15 @@ php artisan migrate
 # 4. Make uploaded art web-accessible
 php artisan storage:link
 
-# 5. Build assets + run
-npm run dev        # in one terminal (Vite)
-php artisan serve  # in another → http://127.0.0.1:8000
+# 5. Build front-end assets
+npm run build      # one-off production build (or `npm run dev` for hot reload)
+
+# 6. Run
+php artisan serve  # → http://127.0.0.1:8000
 ```
+
+> The Blade layout loads CSS/JS through Vite, so build the assets once (`npm run build`)
+> — or keep `npm run dev` running — before serving **or running the test suite**.
 
 ## Publishing comics — the folder-drop workflow
 
@@ -69,14 +74,27 @@ A scheduler entry already runs the import daily (`routes/console.php`). Add one 
 | `/feed` | RSS 2.0 feed (also drives beehiiv RSS-to-email) |
 | `/sitemap.xml` | XML sitemap of all published comics |
 | `/robots.txt` | Allows search + AI/answer engines |
+| `/admin` | Metadata editor (HTTP Basic — see below) |
 
 Future-dated comics return **404** until their release date, so nothing leaks early.
+
+## Admin — editing comic metadata
+
+The importer fills in placeholder `title` / `alt_text` and leaves `caption` / `description` blank. Polish them (and override a release date) at **`/admin`**:
+
+```env
+# .env — set both to unlock /admin. Leave ADMIN_PASSWORD blank to keep it locked (403).
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=change-me
+```
+
+It's a single HTTP Basic gate — no users table, no registration. The editor lists every comic (live **and** scheduled), and editing one lets you change its `title`, `alt_text`, `caption`, `description`, and `published_at`. The release date stays unique — one comic per calendar day — and edits show up immediately on the public strip page, feed, and sitemap. The admin area is `noindex`.
 
 ## SEO / AEO
 
 Every comic page ships per-strip `<title>` + meta description, canonical URL, Open Graph + Twitter card tags, and `ComicStory` JSON-LD structured data. The sitemap and RSS feed update automatically. `robots.txt` explicitly welcomes Googlebot plus GPTBot, ClaudeBot, PerplexityBot, etc. so answer engines can cite the strips.
 
-Add a default social image at `public/og-default.png` (1200×630) for pages without a comic image.
+A default social image ships at `public/og-default.png` (1200×630) and is used on any page without its own comic image.
 
 ## beehiiv (optional newsletter layer)
 
@@ -88,7 +106,7 @@ This site is built to run standalone, but it has drop-in hooks for a beehiiv new
 php artisan test
 ```
 
-Covers the forward-fill scheduling logic, de-duplication, catch-up behaviour, 404-ing future comics, prev/next navigation, and the feed/sitemap.
+Covers the forward-fill scheduling logic, de-duplication, catch-up behaviour, 404-ing future comics, prev/next navigation, the feed/sitemap, and the admin metadata editor (auth gate, editing, and the one-comic-per-day uniqueness rule). Build assets first (see Quick start step 5) so the view-rendering tests have a Vite manifest.
 
 ## Stack
 

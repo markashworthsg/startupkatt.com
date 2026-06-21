@@ -37,7 +37,10 @@ class ComicScheduleTest extends TestCase
             'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=='
         );
         $path = $this->incoming.'/'.$name;
-        File::put($path, $png);
+        // Append the filename so distinct files get distinct content (and thus
+        // distinct sha256 hashes). Identical filenames stay byte-identical, so
+        // the importer's de-dupe-by-hash behaviour is still exercised.
+        File::put($path, $png.$name);
         touch($path, Carbon::parse($mtime)->getTimestamp());
     }
 
