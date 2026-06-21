@@ -37,6 +37,12 @@
 
     @stack('schema')
 
+    {{-- beehiiv attribution tracking — records where subscribers came from.
+         Loads only when a beehiiv form is configured. --}}
+    @if(config('comics.beehiiv.form_id'))
+        <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+    @endif
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen flex flex-col font-sans antialiased">

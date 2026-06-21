@@ -93,8 +93,39 @@ return [
     */
 
     'beehiiv' => [
-        'publication_id' => env('BEEHIIV_PUBLICATION_ID'),
-        'embed_url'      => env('BEEHIIV_EMBED_URL'),
+        'publication_id'  => env('BEEHIIV_PUBLICATION_ID'),
+
+        // beehiiv v3 Subscribe Form. The embed code is a <script> tag with a
+        // data-beehiiv-form="<uuid>" attribute; put that uuid here. When set,
+        // the inline form renders and takes precedence over everything below.
+        'form_id'         => env('BEEHIIV_FORM_ID'),
+
+        // Older inline iframe form (https://embeds.beehiiv.com/<uuid>). Used
+        // only if form_id is not set.
+        'embed_url'       => env('BEEHIIV_EMBED_URL'),
+
+        // Your beehiiv publication homepage, e.g. https://startupkatt.beehiiv.com
+        // Fallback when neither form_id nor embed_url is set: shows a
+        // "Subscribe" button linking to {publication_url}/subscribe.
+        'publication_url' => env('BEEHIIV_PUBLICATION_URL'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin (metadata editor)
+    |--------------------------------------------------------------------------
+    |
+    | The /admin area lets you edit a comic's title, alt text, caption,
+    | description and release date. It is a single HTTP Basic gate — no users
+    | table, no registration. Set both ADMIN_USERNAME and ADMIN_PASSWORD in
+    | .env to unlock it; if the password is blank the admin area is locked
+    | (returns 403) so it is never accidentally left open in production.
+    |
+    */
+
+    'admin' => [
+        'username' => env('ADMIN_USERNAME', 'admin'),
+        'password' => env('ADMIN_PASSWORD'),
     ],
 
 ];
