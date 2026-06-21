@@ -4,6 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    {{-- Favicons / app icons --}}
+    <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
+    <meta name="theme-color" content="#ff6b35">
+
     @php
         $site = config('comics.site');
         $metaTitle = trim($title ?? $site['name']);
@@ -55,6 +63,7 @@
             <nav class="flex items-center gap-4 text-sm font-medium">
                 <a href="{{ route('home') }}" class="hover:text-[var(--color-katt-accent)]">Latest</a>
                 <a href="{{ route('comics.archive') }}" class="hover:text-[var(--color-katt-accent)]">Archive</a>
+                <a href="{{ route('about') }}" class="hover:text-[var(--color-katt-accent)]">About</a>
                 <a href="{{ route('feed') }}" class="hover:text-[var(--color-katt-accent)]">RSS</a>
             </nav>
         </div>
@@ -67,8 +76,20 @@
     <footer class="border-t border-black/10 mt-12">
         <div class="max-w-3xl mx-auto px-4 py-6 text-sm text-black/60 flex flex-col sm:flex-row gap-2 sm:justify-between">
             <p>&copy; {{ date('Y') }} {{ $site['name'] }}. His friends call him Startup Cat.</p>
-            <p>{{ $site['tagline'] }}</p>
+            <p class="flex items-center gap-3">
+                @if(!empty($site['instagram']))
+                    <a href="{{ $site['instagram'] }}" target="_blank" rel="noopener"
+                       class="font-medium underline decoration-black/20 hover:text-[var(--color-katt-accent)]">Instagram</a>
+                    <span aria-hidden="true">·</span>
+                @endif
+                <span>Made by
+                    <a href="{{ $site['creator_linkedin'] }}" target="_blank" rel="noopener"
+                       class="font-medium underline decoration-black/20 hover:text-[var(--color-katt-accent)]">{{ $site['creator'] }}</a>
+                </span>
+            </p>
         </div>
     </footer>
+
+    @stack('scripts')
 </body>
 </html>
