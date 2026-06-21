@@ -22,6 +22,10 @@ Route::get('/about', [ComicController::class, 'about'])->name('about');
 Route::get('/feed', [FeedController::class, 'rss'])->name('feed');
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
+// Permanent redirect for comic #1's old placeholder slug → its title-based slug.
+// Must sit before the /comic/{comic} catch-all so it isn't treated as a slug.
+Route::redirect('/comic/friday', '/comic/seed-round', 301);
+
 // Each comic gets its own SEO-friendly URL: /comic/{slug}
 // Keep this last so it doesn't shadow the named routes above.
 Route::get('/comic/{comic}', [ComicController::class, 'show'])->name('comics.show');
