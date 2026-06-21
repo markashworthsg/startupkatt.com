@@ -1,7 +1,10 @@
 /.phpunit.cache
 /bootstrap/ssr
 /node_modules
-/public/build
+# NOTE: public/build is intentionally COMMITTED. The Forge server (Ubuntu 18.04,
+# glibc 2.27) cannot run the Node 18+ toolchain, so assets are built locally and
+# shipped. After changing CSS/JS: `npm run build` then commit public/build.
+# /public/build
 /public/hot
 /public/storage
 /storage/*.key
