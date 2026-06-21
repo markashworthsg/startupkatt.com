@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+
+/* Startup Katt theme tokens */
+@theme {
+    --font-display: 'Fredoka', ui-rounded, 'Segoe UI', system-ui, sans-serif;
+    --color-katt-ink: #1f2430;
+    --color-katt-paper: #fbf7ef;
+    --color-katt-accent: #ff6b35;
+}
+
+body {
+    background-color: var(--color-katt-paper);
+    color: var(--color-katt-ink);
+}
