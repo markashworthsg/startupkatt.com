@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ComicAdminController;
 use App\Http\Controllers\ComicController;
 use App\Http\Controllers\FeedController;
+use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,10 @@ Route::get('/about', [ComicController::class, 'about'])->name('about');
 // Machine-readable endpoints
 Route::get('/feed', [FeedController::class, 'rss'])->name('feed');
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+
+// Secret sneak-peek of the whole pipeline (scheduled + live). Gated by the
+// COMICS_PREVIEW_TOKEN secret in the path; a wrong/unset token 404s.
+Route::get('/preview/{token}', [PreviewController::class, 'index'])->name('preview');
 
 // Permanent redirect for comic #1's old placeholder slug → its title-based slug.
 // Must sit before the /comic/{comic} catch-all so it isn't treated as a slug.

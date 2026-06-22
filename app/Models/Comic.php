@@ -61,17 +61,19 @@ class Comic extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function previous(): ?Comic
+    public function previous(bool $includeScheduled = false): ?Comic
     {
-        return static::published()
+        return static::query()
+            ->unless($includeScheduled, fn (Builder $q) => $q->published())
             ->where('published_at', '<', $this->published_at)
             ->orderByDesc('published_at')
             ->first();
     }
 
-    public function next(): ?Comic
+    public function next(bool $includeScheduled = false): ?Comic
     {
-        return static::published()
+        return static::query()
+            ->unless($includeScheduled, fn (Builder $q) => $q->published())
             ->where('published_at', '>', $this->published_at)
             ->orderBy('published_at')
             ->first();
@@ -85,6 +87,17 @@ class Comic extends Model
     public static function latestComic(): ?Comic
     {
         return static::published()->orderByDesc('published_at')->first();
+    }
+
+    /** First/last across the whole pipeline (incl. scheduled) — preview nav. */
+    public static function firstOverall(): ?Comic
+    {
+        return static::orderBy('published_at')->first();
+    }
+
+    public static function latestOverall(): ?Comic
+    {
+        return static::orderByDesc('published_at')->first();
     }
 
     public function isLatest(): bool

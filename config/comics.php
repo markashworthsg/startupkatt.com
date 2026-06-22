@@ -134,4 +134,25 @@ return [
         'password' => env('ADMIN_PASSWORD'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Preview (secret sneak-peek link)
+    |--------------------------------------------------------------------------
+    |
+    | A read-only "lite admin" view of the whole pipeline — every scheduled
+    | (not-yet-public) strip plus the live ones — reachable at a secret URL:
+    |
+    |     /preview/{COMICS_PREVIEW_TOKEN}
+    |
+    | The same token also unlocks an individual future strip in the normal
+    | reader via ?preview={token}. Leave COMICS_PREVIEW_TOKEN blank to disable
+    | the feature entirely (any /preview/... URL then 404s). All preview pages
+    | are noindex so they never leak into search.
+    |
+    */
+
+    'preview' => [
+        'token' => env('COMICS_PREVIEW_TOKEN'),
+    ],
+
 ];

@@ -23,6 +23,9 @@
 
     <title>{{ $metaTitle }}</title>
     <meta name="description" content="{{ $metaDescription }}">
+    @if($noindex ?? false)
+        <meta name="robots" content="noindex, nofollow">
+    @endif
     <link rel="canonical" href="{{ $canonical }}">
 
     {{-- Open Graph --}}

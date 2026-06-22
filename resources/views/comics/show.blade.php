@@ -1,10 +1,16 @@
 @php
     $site = config('comics.site');
+    $preview = $preview ?? false;
+    $previewToken = $previewToken ?? null;
     $title = $comic->title.' — '.$site['name'].' #'.$comic->number;
     $description = $comic->meta_description;
     $canonical = $comic->url;
     $ogImage = $comic->og_image_url;
     $ogType = 'article';
+    // Never let an unpublished sneak-peek into search.
+    $noindex = $preview;
+    // Token suffix for the "next" image link below.
+    $navQuery = $previewToken ? '?preview='.urlencode($previewToken) : '';
 @endphp
 
 @extends('layouts.app')
@@ -33,6 +39,13 @@
 
 @section('content')
 <article class="flex flex-col items-center">
+    @if($preview)
+        <div class="w-full mb-4 rounded-md border border-[var(--color-katt-accent)] bg-[var(--color-katt-accent)]/10 px-4 py-2 text-sm text-center font-semibold">
+            👁 Preview — scheduled for {{ $comic->published_at->format('F j, Y') }}, not yet public.
+            <a href="{{ route('preview', $previewToken) }}" class="underline">Back to all upcoming</a>
+        </div>
+    @endif
+
     <header class="w-full text-center mb-4">
         <h1 class="text-2xl sm:text-3xl font-extrabold" style="font-family: var(--font-display)">
             #{{ $comic->number }} — {{ $comic->title }}
@@ -45,10 +58,14 @@
     </header>
 
     {{-- Top nav --}}
-    <x-comic-nav :previous="$previous" :next="$next" class="mb-4" />
+    <x-comic-nav :previous="$previous" :next="$next"
+        :preview-token="$previewToken"
+        :first="$preview ? \App\Models\Comic::firstOverall() : null"
+        :latest="$preview ? \App\Models\Comic::latestOverall() : null"
+        class="mb-4" />
 
     <figure class="w-full">
-        <a href="{{ $next?->url ?? route('home') }}" title="Next comic">
+        <a href="{{ $next ? $next->url.$navQuery : route('home') }}" title="Next comic">
             <img
                 src="{{ $comic->image_url }}"
                 alt="{{ $comic->alt_text }}"
@@ -69,7 +86,11 @@
     <x-comic-share :comic="$comic" class="mt-6" />
 
     {{-- Bottom nav --}}
-    <x-comic-nav :previous="$previous" :next="$next" class="mt-6" />
+    <x-comic-nav :previous="$previous" :next="$next"
+        :preview-token="$previewToken"
+        :first="$preview ? \App\Models\Comic::firstOverall() : null"
+        :latest="$preview ? \App\Models\Comic::latestOverall() : null"
+        class="mt-6" />
 
     <x-newsletter-signup class="mt-10" />
 </article>

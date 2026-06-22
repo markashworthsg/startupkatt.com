@@ -26,20 +26,35 @@ class ComicController extends Controller
         ]);
     }
 
-    /** A single comic by slug. Future-dated comics 404 until their release date. */
-    public function show(Comic $comic)
+    /**
+     * A single comic by slug. Future-dated comics 404 until their release date,
+     * unless a valid ?preview={token} is supplied (the secret sneak-peek link).
+     */
+    public function show(Request $request, Comic $comic)
     {
-        abort_if(
-            $comic->published_at->gt(Carbon::today()),
-            Response::HTTP_NOT_FOUND
-        );
+        $isFuture = $comic->published_at->gt(Carbon::today());
+        $preview = $isFuture && $this->previewUnlocked($request);
+
+        abort_if($isFuture && ! $preview, Response::HTTP_NOT_FOUND);
 
         return view('comics.show', [
-            'comic'    => $comic,
-            'previous' => $comic->previous(),
-            'next'     => $comic->next(),
-            'isHome'   => false,
+            'comic'        => $comic,
+            // In preview, navigate across the whole pipeline incl. scheduled.
+            'previous'     => $comic->previous($preview),
+            'next'         => $comic->next($preview),
+            'isHome'       => false,
+            'preview'      => $preview,
+            'previewToken' => $preview ? (string) $request->query('preview') : null,
         ]);
+    }
+
+    /** True when the request carries the configured secret preview token. */
+    protected function previewUnlocked(Request $request): bool
+    {
+        $configured = (string) config('comics.preview.token');
+        $supplied = (string) $request->query('preview', '');
+
+        return $configured !== '' && hash_equals($configured, $supplied);
     }
 
     /** Full archive grid of every published comic, newest first. */
