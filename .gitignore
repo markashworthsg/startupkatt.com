@@ -1,9 +1,11 @@
 /.phpunit.cache
 /bootstrap/ssr
 /node_modules
-# Assets are built on the server during deploy (npm ci && npm run build),
-# matching growthpigeon. Do not commit the build output.
-/public/build
+# NOTE: public/build is intentionally COMMITTED. The Forge host (Ubuntu 18.04,
+# glibc 2.27, Node 8) cannot run the Node 18+ build toolchain, so assets are
+# built locally and shipped. After changing CSS/JS: `npm run build` then commit
+# public/build. See memory: forge-build-node-version. Do NOT re-ignore this.
+# /public/build
 /public/hot
 /public/storage
 /storage/*.key
