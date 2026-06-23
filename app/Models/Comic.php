@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 
@@ -108,6 +109,87 @@ class Comic extends Model
     public function isFirst(): bool
     {
         return $this->previous() === null;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Reactions (lightweight, login-free voting)
+    |--------------------------------------------------------------------------
+    */
+
+    public function reactions(): HasMany
+    {
+        return $this->hasMany(Reaction::class);
+    }
+
+    /**
+     * Tally for every configured reaction, keyed by reaction slug, with any
+     * un-voted reactions filled in as 0 so the UI always renders the full set.
+     *
+     * @return array<string, int>
+     */
+    public function reactionCounts(): array
+    {
+        $stored = $this->reactions()->pluck('count', 'reaction')->all();
+
+        $counts = [];
+        foreach (array_keys(config('comics.reactions')) as $key) {
+            $counts[$key] = (int) ($stored[$key] ?? 0);
+        }
+
+        return $counts;
+    }
+
+    /** The reaction this strip earned most, or null if it has none yet. */
+    public function topReaction(): ?string
+    {
+        $counts = array_filter($this->reactionCounts());
+        if ($counts === []) {
+            return null;
+        }
+        arsort($counts);
+
+        return array_key_first($counts);
+    }
+
+    /**
+     * Published strips ranked by total reactions (the overall leaderboard).
+     * Each result carries a `reactions_total` attribute. Strips with no
+     * reactions are excluded so the page never lists dead weight.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection<int, Comic>
+     */
+    public static function topOverall(int $limit = 25): \Illuminate\Database\Eloquent\Collection
+    {
+        return static::published()
+            ->select('comics.*')
+            ->selectRaw('COALESCE(SUM(reactions.count), 0) as reactions_total')
+            ->join('reactions', 'reactions.comic_id', '=', 'comics.id')
+            ->groupBy('comics.id')
+            ->havingRaw('SUM(reactions.count) > 0')
+            ->orderByDesc('reactions_total')
+            ->orderByDesc('published_at')
+            ->limit($limit)
+            ->get();
+    }
+
+    /**
+     * Published strips ranked by a single reaction's tally (e.g. funniest).
+     * Each result carries a `reactions_total` attribute (that reaction's count).
+     *
+     * @return \Illuminate\Database\Eloquent\Collection<int, Comic>
+     */
+    public static function topByReaction(string $reaction, int $limit = 25): \Illuminate\Database\Eloquent\Collection
+    {
+        return static::published()
+            ->select('comics.*', 'reactions.count as reactions_total')
+            ->join('reactions', 'reactions.comic_id', '=', 'comics.id')
+            ->where('reactions.reaction', $reaction)
+            ->where('reactions.count', '>', 0)
+            ->orderByDesc('reactions.count')
+            ->orderByDesc('published_at')
+            ->limit($limit)
+            ->get();
     }
 
     /*

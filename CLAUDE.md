@@ -22,6 +22,8 @@ Running gag: the cat is "Startup Katt" but everyone calls him "Startup Cat". Kee
 | Import / scheduling | `app/Console/Commands/ImportComics.php` |
 | Pages | `app/Http/Controllers/ComicController.php` |
 | Admin (metadata editor) | `app/Http/Controllers/Admin/ComicAdminController.php`, `app/Http/Middleware/AdminAuth.php`, `resources/views/admin/*` |
+| Reactions (login-free voting) | `app/Http/Controllers/ReactionController.php`, `app/Models/{Reaction,ReactionVote}.php`, `resources/views/components/comic-reactions.blade.php` |
+| Top-strips leaderboard + toast | `app/Http/Controllers/TopController.php`, `resources/views/comics/top.blade.php`, `resources/views/components/top-strip-toast.blade.php` |
 | Feed / sitemap | `app/Http/Controllers/{FeedController,SitemapController}.php` |
 | Config (all knobs) | `config/comics.php` |
 | Reader view | `resources/views/comics/show.blade.php` |
@@ -70,6 +72,8 @@ Important: the apex domain `startupkatt.com` is THIS Laravel app. beehiiv should
 - No general auth/users — the admin is a single shared HTTP Basic gate, nothing more.
 - ~~No `og-default.png`~~ — a 1200×630 fallback ships at `public/og-default.png`.
 - No image optimization/thumbnails — could generate WebP + responsive sizes on import.
+- **Reactions are a growth loop, not analytics.** Readers tap one of the `config('comics.reactions')` options per strip (changeable/toggleable, no login). Tallies are denormalised counts in the `reactions` table. **Anti-spam:** the count only ever moves once per IP per comic — a hashed-IP row in `reaction_votes` (unique on `comic_id, ip_hash`) is the *sole authority* for counting, so clearing the cookie, incognito, or scripting can't inflate it; the route is also rate-limited (`throttle:20,1`). The `sk_votes` cookie is now **UI-only** (mirrors your pick so the widget highlights instantly; capped to the last 100 strips) and plays no part in counting. Trade-off: shared IPs (office WiFi) share a vote, so counts lean conservative — the right failure mode for social proof. Future strips can't be voted on (POST 404s) and the widget is hidden in preview.
+- **The leaderboard is the content/SEO loop** the reactions feed. `/top` ranks published strips by total reactions; `/top/{reaction}` ranks by a single reaction (e.g. `/top/unhinged`), headlined by that reaction's `superlative` from config. Ranking queries are `Comic::topOverall()` / `Comic::topByReaction()` (strips with zero reactions are excluded). The page is built to the `seo-aeo-content` skill: descriptive H1, ItemList + FAQPage JSON-LD, a visible FAQ, and a "last updated" line; it `noindex`es itself when fewer than 3 strips are ranked (no thin pages), and the sitemap only lists leaderboards that clear that bar. The **top-strip toast** (`x-top-strip-toast`, on the reader) teases the #1 strip after ~8s, once per session (sessionStorage), dismissible, and never teases the strip you're already on — its CTA links to `/top`.
 
 ## Commands
 

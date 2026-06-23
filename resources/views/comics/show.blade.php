@@ -76,11 +76,18 @@
             >
         </a>
         @if($comic->caption)
-            <figcaption class="mt-3 text-center text-black/70 leading-relaxed">
+            {{-- Transcript kept for screen readers + crawlers (SEO/AEO), but hidden
+                 visually so the plain-text restatement doesn't spoil the joke. --}}
+            <figcaption class="sr-only">
                 {{ $comic->caption }}
             </figcaption>
         @endif
     </figure>
+
+    {{-- Reactions (login-free voting) — only on live strips, never previews --}}
+    @unless($preview)
+        <x-comic-reactions :comic="$comic" class="mt-6" />
+    @endunless
 
     {{-- Share --}}
     <x-comic-share :comic="$comic" class="mt-6" />
@@ -94,4 +101,10 @@
 
     <x-newsletter-signup class="mt-10" />
 </article>
+
+{{-- Engagement nudge: teases the most-reacted strip, links to /top. Hidden in
+     preview, and never tease the strip you're currently reading. --}}
+@unless($preview)
+    <x-top-strip-toast :current="$comic" />
+@endunless
 @endsection

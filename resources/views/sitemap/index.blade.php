@@ -15,6 +15,13 @@
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
+    @foreach($topPages ?? [] as $topPage)
+    <url>
+        <loc>{{ $topPage }}</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.6</priority>
+    </url>
+    @endforeach
     @foreach($comics as $comic)
     <url>
         <loc>{{ $comic->url }}</loc>

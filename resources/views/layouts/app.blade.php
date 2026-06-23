@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- Favicons / app icons --}}
     <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
@@ -65,6 +66,7 @@
             </a>
             <nav class="flex items-center gap-4 text-sm font-medium">
                 <a href="{{ route('home') }}" class="hover:text-[var(--color-katt-accent)]">Latest</a>
+                <a href="{{ route('top') }}" class="hover:text-[var(--color-katt-accent)]">Top</a>
                 <a href="{{ route('comics.archive') }}" class="hover:text-[var(--color-katt-accent)]">Archive</a>
                 <a href="{{ route('about') }}" class="hover:text-[var(--color-katt-accent)]">About</a>
                 <a href="{{ route('feed') }}" class="hover:text-[var(--color-katt-accent)]">RSS</a>

@@ -69,6 +69,34 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Reactions (login-free voting — a retention growth loop)
+    |--------------------------------------------------------------------------
+    |
+    | Readers tap one reaction per strip (changeable, toggleable). It's a tiny
+    | engagement investment, and the aggregate tallies act as social proof — the
+    | loop is: react -> counts -> social proof + investment -> return + share ->
+    | more readers -> more reactions. Keep this list short so it stays a
+    | one-tap ritual, not gamification.
+    |
+    | Order here is the order shown in the UI. The last one is deliberately
+    | unhinged — the "this hit too close to home" vote for startup life.
+    |
+    | Each entry also carries a `superlative` used to headline its leaderboard
+    | page (/top/{reaction}), e.g. "The funniest Startup Katt strips".
+    |
+    */
+
+    'reactions' => [
+        'love'      => ['emoji' => '😻', 'label' => 'Love it', 'superlative' => 'most loved'],
+        'funny'     => ['emoji' => '😹', 'label' => 'Funny', 'superlative' => 'funniest'],
+        'insightful' => ['emoji' => '🧠', 'label' => 'Insightful', 'superlative' => 'most insightful'],
+        'shocking'  => ['emoji' => '🤯', 'label' => 'Shocking', 'superlative' => 'most shocking'],
+        'gross'     => ['emoji' => '🤢', 'label' => 'Gross', 'superlative' => 'grossest'],
+        'unhinged'  => ['emoji' => '🫠', 'label' => 'Disturbingly relatable', 'superlative' => 'most unhinged'],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Site metadata (SEO / AEO defaults)
     |--------------------------------------------------------------------------
     */
