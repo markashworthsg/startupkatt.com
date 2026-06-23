@@ -48,6 +48,7 @@
     <link rel="alternate" type="application/rss+xml" title="{{ $site['name'] }} RSS" href="{{ route('feed') }}">
 
     @stack('schema')
+    @stack('styles')
 
     {{-- beehiiv attribution tracking — records where subscribers came from.
          Loads only when a beehiiv form is configured. --}}
