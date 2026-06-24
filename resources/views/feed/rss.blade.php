@@ -15,14 +15,16 @@
         <link>{{ $comic->url }}</link>
         <guid isPermaLink="true">{{ $comic->url }}</guid>
         <pubDate>{{ $comic->published_at->toRfc822String() }}</pubDate>
+        {{-- Image + link only. The transcript ($comic->caption) is deliberately
+             left out: it's the punchline written in words, so printing it in an
+             email/feed reader spoils the joke. It stays sr-only on-site; the
+             image alt still carries accessibility here. --}}
         <description><![CDATA[
-            <p><img src="{{ $comic->image_url }}" alt="{{ $comic->alt_text }}" /></p>
-            @if($comic->caption)<p>{{ $comic->caption }}</p>@endif
+            <p><a href="{{ $comic->url }}"><img src="{{ $comic->image_url }}" alt="{{ $comic->alt_text }}" /></a></p>
             <p><a href="{{ $comic->url }}">Read on {{ config('comics.site.name') }}</a></p>
         ]]></description>
         <content:encoded><![CDATA[
-            <p><img src="{{ $comic->image_url }}" alt="{{ $comic->alt_text }}" /></p>
-            @if($comic->caption)<p>{{ $comic->caption }}</p>@endif
+            <p><a href="{{ $comic->url }}"><img src="{{ $comic->image_url }}" alt="{{ $comic->alt_text }}" /></a></p>
             <p><a href="{{ $comic->url }}">Read on {{ config('comics.site.name') }}</a></p>
         ]]></content:encoded>
     </item>

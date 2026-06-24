@@ -75,4 +75,19 @@ class ComicBrowsingTest extends TestCase
         $this->get('/sitemap.xml')->assertOk()->assertSee('/comic/x');
         $this->get('/feed')->assertOk()->assertSee('<rss', false);
     }
+
+    public function test_feed_does_not_leak_the_transcript_and_spoil_the_joke(): void
+    {
+        Comic::factory()->create([
+            'slug' => 'punchline',
+            'published_at' => '2026-06-20',
+            'alt_text' => 'A cat at a whiteboard.',
+            'caption' => 'Panel 3: the cat says the secret punchline.',
+        ]);
+
+        $res = $this->get('/feed')->assertOk();
+        // The image + read link ship; the transcript stays sr-only on-site only.
+        $res->assertSee('/comic/punchline');
+        $res->assertDontSee('the secret punchline');
+    }
 }
