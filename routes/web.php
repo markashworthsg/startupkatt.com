@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ComicAdminController;
 use App\Http\Controllers\ComicController;
 use App\Http\Controllers\FeedController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\ReactionController;
 use App\Http\Controllers\SitemapController;
@@ -24,6 +25,12 @@ Route::get('/about', [ComicController::class, 'about'])->name('about');
 // Top-strips leaderboard (content/SEO loop built on reaction tallies).
 // /top = overall; /top/{reaction} = a single reaction's leaderboard.
 Route::get('/top/{reaction?}', [TopController::class, 'index'])->name('top');
+
+// Newsletter signup: the on-brand form POSTs here, we create the beehiiv
+// subscription server-side. Rate-limited so it can't be used to spray emails.
+Route::post('/subscribe', [NewsletterController::class, 'subscribe'])
+    ->middleware('throttle:10,1')
+    ->name('newsletter.subscribe');
 
 // Machine-readable endpoints
 Route::get('/feed', [FeedController::class, 'rss'])->name('feed');

@@ -129,6 +129,12 @@ return [
     'beehiiv' => [
         'publication_id'  => env('BEEHIIV_PUBLICATION_ID'),
 
+        // beehiiv API v2 key (Settings → API in beehiiv). When this and
+        // publication_id are set, the on-brand signup form POSTs to our own
+        // /subscribe endpoint, which creates the subscription server-side. This
+        // is the reliable, fully-styleable path (no ad-blocker-prone embed).
+        'api_key'         => env('BEEHIIV_API_KEY'),
+
         // beehiiv v3 Subscribe Form. The embed code is a <script> tag with a
         // data-beehiiv-form="<uuid>" attribute; put that uuid here. When set,
         // the inline form renders and takes precedence over everything below.
