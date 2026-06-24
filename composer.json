@@ -1,7 +1,7 @@
 {
     "name": "startupkatt/comics",
     "type": "project",
-    "description": "Startup Katt — an AI-generated webcomic. Laravel site with a one-strip reader, per-comic SEO routes, and folder-drop forward-fill scheduling.",
+    "description": "Startup Katt: an AI-generated webcomic. Laravel site with a one-strip reader, per-comic SEO routes, and folder-drop forward-fill scheduling.",
     "keywords": ["webcomic", "laravel", "startup-katt"],
     "license": "proprietary",
     "require": {

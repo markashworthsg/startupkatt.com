@@ -2,7 +2,7 @@
     use Illuminate\Support\Carbon;
 
     $site = config('comics.site');
-    $title = 'Preview — '.$site['name'];
+    $title = 'Preview: '.$site['name'];
     $description = 'Private preview of the Startup Katt pipeline.';
     $canonical = url()->current();
     $noindex = true;
@@ -14,7 +14,7 @@
 <div class="mb-8">
     <h1 class="text-3xl font-extrabold" style="font-family: var(--font-display)">Preview</h1>
     <p class="mt-1 text-sm text-black/50">
-        Private sneak-peek of the whole pipeline — scheduled strips up top, live archive below.
+        Private sneak-peek of the whole pipeline: scheduled strips up top, live archive below.
         Don’t share this link. ({{ $scheduled->count() }} scheduled · {{ $published->count() }} live)
     </p>
 </div>
@@ -27,14 +27,14 @@
     </h2>
 
     @if($scheduled->isEmpty())
-        <p class="text-black/60">Nothing scheduled — drop art in the incoming folder and run <code>comics:import</code>.</p>
+        <p class="text-black/60">Nothing scheduled. Drop art in the incoming folder and run <code>comics:import</code>.</p>
     @else
         <ul class="space-y-10">
             @foreach($scheduled as $comic)
                 @php $days = (int) round(Carbon::today()->diffInDays($comic->published_at, false)); @endphp
                 <li>
                     <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
-                        <span class="text-lg font-bold">#{{ $comic->number }} — {{ $comic->title }}</span>
+                        <span class="text-lg font-bold">#{{ $comic->number }}: {{ $comic->title }}</span>
                         <span class="text-sm text-black/50">
                             {{ $comic->published_at->format('l, M j, Y') }}
                             · {{ $days === 0 ? 'today' : ($days === 1 ? 'tomorrow' : "in {$days} days") }}
@@ -46,7 +46,7 @@
                     </a>
                     <dl class="mt-2 text-sm text-black/60 space-y-0.5">
                         <div><span class="font-semibold text-black/70">slug:</span> /comic/{{ $comic->slug }}</div>
-                        <div><span class="font-semibold text-black/70">alt:</span> {{ $comic->alt_text ?: '—' }}</div>
+                        <div><span class="font-semibold text-black/70">alt:</span> {{ $comic->alt_text ?: '(none)' }}</div>
                         @if($comic->caption)<div><span class="font-semibold text-black/70">caption:</span> {{ $comic->caption }}</div>@endif
                         @if($comic->description)<div><span class="font-semibold text-black/70">description:</span> {{ $comic->description }}</div>@endif
                     </dl>

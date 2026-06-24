@@ -1,7 +1,7 @@
 // Version-guarded build entrypoint (kept ES5 so it parses on legacy Node).
 //
 // Vite 6 / Tailwind v4 require Node 18+. The Forge host runs Node 8, so if a
-// deploy script still calls `npm run build` there, we must NOT crash — the
+// deploy script still calls `npm run build` there, we must NOT crash. The
 // compiled assets are already committed under public/build. On modern Node
 // (local / CI) we run the real Vite build.
 var cp = require('child_process');

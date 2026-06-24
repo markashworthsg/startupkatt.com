@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 class PreviewController extends Controller
 {
     /**
-     * Secret "lite admin" sneak-peek: a scrollable feed of the whole pipeline —
+     * Secret "lite admin" sneak-peek: a scrollable feed of the whole pipeline:
      * every scheduled (not-yet-public) strip up top, then the live archive.
      * Reached at /preview/{token}; a wrong or unset token 404s indistinguishably.
      */

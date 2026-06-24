@@ -2,11 +2,11 @@
     $site = config('comics.site');
     $creator = $site['creator'];
     $linkedin = $site['creator_linkedin'];
-    $title = 'About Startup Katt — the daily webcomic about a cat founder';
+    $title = 'About Startup Katt: the daily webcomic about a cat founder';
     $description = 'Startup Katt is a daily webcomic about a cat trying to build a startup. What it is, who makes it, how often it updates, and how to read it from the beginning.';
     $canonical = route('about');
 
-    // Visible "last updated" line — re-stamp this when you meaningfully edit the page.
+    // Visible "last updated" line. Re-stamp this when you meaningfully edit the page.
     $lastUpdated = '2026-06-22';
 
     // Single source of truth for the FAQ: rendered both as a visible section and
@@ -14,11 +14,11 @@
     $faqs = [
         [
             'q' => 'What is Startup Katt?',
-            'a' => 'Startup Katt is a daily webcomic about a cat trying to build a startup. Each strip is a single, self-contained gag about startup life — fundraising, pivots, demo days, burnout, and the gap between the pitch and the reality — told through one stubbornly optimistic cat founder. A new strip goes live every day, and the full run is free to read in the archive.',
+            'a' => 'Startup Katt is a daily webcomic about a cat trying to build a startup. Each strip is a single, self-contained gag about startup life (fundraising, pivots, demo days, burnout, and the gap between the pitch and the reality), told through one stubbornly optimistic cat founder. A new strip goes live every day, and the full run is free to read in the archive.',
         ],
         [
             'q' => 'Who is the cat, and why do people call him Startup Cat?',
-            'a' => 'The cat is named Startup Katt — with two t\'s — but almost everyone calls him "Startup Cat" anyway. He has decided to let it slide. He\'s ambitious, perpetually over-caffeinated, and completely convinced his next idea is the one that finally works. The running joke is that he keeps building things nobody asked for with the unshakeable confidence of someone who has never once read a churn report.',
+            'a' => 'The cat is named Startup Katt (with two t\'s), but almost everyone calls him "Startup Cat" anyway. He has decided to let it slide. He\'s ambitious, perpetually over-caffeinated, and completely convinced his next idea is the one that finally works. The running joke is that he keeps building things nobody asked for with the unshakeable confidence of someone who has never once read a churn report.',
         ],
         [
             'q' => 'How often is a new comic published?',
@@ -26,7 +26,7 @@
         ],
         [
             'q' => 'Where do I start reading Startup Katt?',
-            'a' => 'You can jump in anywhere — every strip stands on its own. If you\'d rather read in order, open the archive and start from the earliest comic, or use the first / previous / next / latest navigation on any strip to move through the run one day at a time.',
+            'a' => 'You can jump in anywhere. Every strip stands on its own. If you\'d rather read in order, open the archive and start from the earliest comic, or use the first / previous / next / latest navigation on any strip to move through the run one day at a time.',
         ],
         [
             'q' => 'Is Startup Katt AI-generated?',
@@ -108,9 +108,9 @@
         What is Startup Katt about?
     </h2>
     <p class="leading-relaxed text-black/80">
-        Every strip is a single, self-contained gag about startup life — the fundraising,
+        Every strip is a single, self-contained gag about startup life: the fundraising,
         the pivots, the demo days, the burnout, and the enormous gap between the pitch and
-        the reality. I draw it because every founder I've ever met — myself included — has
+        the reality. I draw it because every founder I've ever met (myself included) has
         been that cat at 2&nbsp;a.m., pitch deck open, litter box of self-doubt nearby. It's
         the funnier, more honest version of building something out of nothing.
     </p>
@@ -119,7 +119,7 @@
         Who is Startup Katt (and why "Startup Cat")?
     </h2>
     <p class="leading-relaxed text-black/80">
-        The cat is <strong>Startup Katt</strong> — with two t's — but everyone calls him
+        The cat is <strong>Startup Katt</strong> (with two t's), but everyone calls him
         "Startup Cat" anyway, and he's letting it slide. He's ambitious, a little
         over-caffeinated, and absolutely convinced his next idea is the one. He keeps
         shipping things nobody asked for with the confidence of someone who has never once
@@ -130,10 +130,10 @@
         Who makes it?
     </h2>
     <p class="leading-relaxed text-black/80">
-        Hi — I'm <strong>{{ $creator }}</strong>, the human behind Startup Katt. I spend my
+        Hi, I'm <strong>{{ $creator }}</strong>, the human behind Startup Katt. I spend my
         days around startups, product, and the strange comedy of trying to make something
         out of nothing. The art is AI-generated; the jokes, the characters, and the voice
-        are mine. New strip every day — pull up a chair.
+        are mine. New strip every day. Pull up a chair.
     </p>
 
     <h2 class="text-2xl font-bold mt-10 mb-4" style="font-family: var(--font-display)">

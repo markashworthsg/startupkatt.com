@@ -1,6 +1,6 @@
 @php
     $site = config('comics.site');
-    $title = 'Archive — '.$site['name'];
+    $title = 'Archive: '.$site['name'];
     $description = 'Browse every Startup Katt comic. The complete archive of the daily webcomic about a cat trying to build a startup.';
     $canonical = route('comics.archive');
 @endphp

@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * A single HTTP Basic gate for the /admin area.
  *
- * No users table, no sessions — just the ADMIN_USERNAME / ADMIN_PASSWORD pair
+ * No users table, no sessions, just the ADMIN_USERNAME / ADMIN_PASSWORD pair
  * from config. If no password is configured the area is locked entirely so it
  * is never accidentally left open.
  */

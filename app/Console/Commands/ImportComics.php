@@ -53,7 +53,7 @@ class ImportComics extends Command
             ->reject(fn ($c) => $existingHashes->has($c['hash']))
             // De-dupe within this same batch (two identical files dropped at once).
             ->unique('hash')
-            // 3. Order by file modification time, EARLIEST first — the earliest
+            // 3. Order by file modification time, EARLIEST first, the earliest
             //    file takes the earliest open release slot.
             ->sortBy('mtime')
             ->values();
@@ -85,7 +85,7 @@ class ImportComics extends Command
 
         $this->newLine();
         $this->info($dryRun
-            ? 'Dry run complete — no changes written.'
+            ? 'Dry run complete. No changes written.'
             : "Done. {$candidates->count()} comic(s) scheduled.");
 
         return self::SUCCESS;
@@ -148,8 +148,8 @@ class ImportComics extends Command
             'number'            => $number,
             'slug'              => $slug,
             'title'             => $title,
-            // Sensible placeholders — edit later for best SEO/AEO + accessibility.
-            'alt_text'          => $title.' — Startup Katt comic',
+            // Sensible placeholders, edit later for best SEO/AEO + accessibility.
+            'alt_text'          => $title.': Startup Katt comic',
             'caption'           => null,
             'description'       => null,
             'image_path'        => $destination,

@@ -10,7 +10,7 @@ return [
     | Drop new comic image files in here. The `comics:import` command scans
     | this folder, de-duplicates by file hash, orders new files by their file
     | modification time (earliest first), and assigns each one the next empty
-    | future release date — one comic per day.
+    | future release date. One comic per day.
     |
     */
 
@@ -69,17 +69,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Reactions (login-free voting — a retention growth loop)
+    | Reactions (login-free voting: a retention growth loop)
     |--------------------------------------------------------------------------
     |
     | Readers tap one reaction per strip (changeable, toggleable). It's a tiny
-    | engagement investment, and the aggregate tallies act as social proof — the
+    | engagement investment, and the aggregate tallies act as social proof. The
     | loop is: react -> counts -> social proof + investment -> return + share ->
     | more readers -> more reactions. Keep this list short so it stays a
     | one-tap ritual, not gamification.
     |
     | Order here is the order shown in the UI. The last one is deliberately
-    | unhinged — the "this hit too close to home" vote for startup life.
+    | unhinged: the "this hit too close to home" vote for startup life.
     |
     | Each entry also carries a `superlative` used to headline its leaderboard
     | page (/top/{reaction}), e.g. "The funniest Startup Katt strips".
@@ -107,7 +107,7 @@ return [
         'author'      => 'Startup Katt',
         'twitter'     => '@startupkatt',
         'instagram'   => 'https://www.instagram.com/startupkatt',
-        'description' => 'Startup Katt — a daily AI-generated webcomic following the misadventures of a cat founder. New strip every day. Read the full archive.',
+        'description' => 'Startup Katt: a daily AI-generated webcomic following the misadventures of a cat founder. New strip every day. Read the full archive.',
 
         // The human behind the comic. Linked from the footer of every page
         // and from the /about page.
@@ -150,7 +150,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | The /admin area lets you edit a comic's title, alt text, caption,
-    | description and release date. It is a single HTTP Basic gate — no users
+    | description and release date. It is a single HTTP Basic gate, no users
     | table, no registration. Set both ADMIN_USERNAME and ADMIN_PASSWORD in
     | .env to unlock it; if the password is blank the admin area is locked
     | (returns 403) so it is never accidentally left open in production.
@@ -167,8 +167,8 @@ return [
     | Preview (secret sneak-peek link)
     |--------------------------------------------------------------------------
     |
-    | A read-only "lite admin" view of the whole pipeline — every scheduled
-    | (not-yet-public) strip plus the live ones — reachable at a secret URL:
+    | A read-only "lite admin" view of the whole pipeline: every scheduled
+    | (not-yet-public) strip plus the live ones, reachable at a secret URL:
     |
     |     /preview/{COMICS_PREVIEW_TOKEN}
     |

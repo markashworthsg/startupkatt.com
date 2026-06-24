@@ -86,7 +86,7 @@ class ComicScheduleTest extends TestCase
     {
         Carbon::setTestNow('2026-06-21 09:00:00');
 
-        // Latest scheduled date is in the past — don't backfill, start today.
+        // Latest scheduled date is in the past, don't backfill, start today.
         Comic::factory()->create(['published_at' => '2026-06-10', 'number' => 1]);
 
         $this->dropFile('catchup.png', '2026-06-21 10:00:00');

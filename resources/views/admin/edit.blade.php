@@ -55,7 +55,7 @@
 
             <div>
                 <label for="published_at" class="block text-sm font-semibold mb-1">Release date
-                    <span class="font-normal text-black/50">(one comic per day — stays unique)</span>
+                    <span class="font-normal text-black/50">(one comic per day, stays unique)</span>
                 </label>
                 <input type="date" id="published_at" name="published_at"
                        value="{{ old('published_at', $comic->published_at->toDateString()) }}"

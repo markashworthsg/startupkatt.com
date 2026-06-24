@@ -23,14 +23,14 @@ class ReactionController extends Controller
     /**
      * Cast one login-free vote on a published strip.
      *
-     * Anti-spam: the tally only ever moves once per IP per comic — the durable
+     * Anti-spam: the tally only ever moves once per IP per comic: the durable
      * `reaction_votes` row (keyed by a hashed IP) is the sole authority for the
      * count, so clearing the cookie, going incognito, or scripting the endpoint
      * can't inflate anything. The route is also rate-limited (see routes/web.php).
      *
      * Tapping a new reaction sets it; tapping your current one removes it;
      * tapping a different one moves your vote. The cookie only mirrors your pick
-     * so the UI can highlight it instantly — it plays no part in counting.
+     * so the UI can highlight it instantly; it plays no part in counting.
      */
     public function store(Request $request, Comic $comic): JsonResponse
     {
@@ -94,7 +94,7 @@ class ReactionController extends Controller
 
     /**
      * Update the per-browser pick map ({comicId: reaction}) for the UI highlight.
-     * Purely cosmetic — counting is governed entirely by the reaction_votes row.
+     * Purely cosmetic; counting is governed entirely by the reaction_votes row.
      */
     protected function rememberPick(Request $request, int $comicId, ?string $reaction): string
     {

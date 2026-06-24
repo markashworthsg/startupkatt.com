@@ -32,9 +32,9 @@ return new class extends Migration
             // Ingestion bookkeeping
             $table->string('file_hash', 64)->unique();  // sha256 of the source file (de-dupe)
             $table->string('original_filename');
-            $table->timestamp('file_created_at');       // source file mtime — drives ordering
+            $table->timestamp('file_created_at');       // source file mtime, drives ordering
 
-            // Release scheduling — one comic per calendar day
+            // Release scheduling: one comic per calendar day
             $table->date('published_at')->unique()->index();
 
             $table->timestamps();

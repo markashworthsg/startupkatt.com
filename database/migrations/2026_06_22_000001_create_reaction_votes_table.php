@@ -13,7 +13,7 @@ return new class extends Migration
 
             $table->foreignId('comic_id')->constrained()->cascadeOnDelete();
 
-            // HMAC of (comic_id + voter IP) keyed by the app key — never the raw
+            // HMAC of (comic_id + voter IP) keyed by the app key, never the raw
             // IP. Lets us enforce one vote per network per strip without storing
             // anything personally identifying or correlatable across comics.
             $table->string('ip_hash', 64);

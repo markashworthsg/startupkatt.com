@@ -73,7 +73,7 @@ class ReactionTest extends TestCase
     {
         $comic = Comic::factory()->create(['slug' => 'live', 'published_at' => '2026-06-20']);
 
-        // Same IP fires a flurry of reactions — counts only ever reflect one vote.
+        // Same IP fires a flurry of reactions, counts only ever reflect one vote.
         $this->reactFrom('10.0.0.1', $comic, 'funny');
         $this->reactFrom('10.0.0.1', $comic, 'gross');
         $this->reactFrom('10.0.0.1', $comic, 'love');

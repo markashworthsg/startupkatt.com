@@ -13,7 +13,7 @@
     $votes = json_decode((string) request()->cookie('sk_votes'), true);
     $userReaction = is_array($votes) ? ($votes[$comic->id] ?? null) : null;
 
-    // Compact tally (1234 -> 1.2k) — mirrors the JS so counts don't reformat
+    // Compact tally (1234 -> 1.2k), mirrors the JS so counts don't reformat
     // the instant someone votes.
     $fmt = function (int $n): string {
         if ($n >= 1000000) return rtrim(rtrim(number_format($n / 1000000, 1), '0'), '.').'M';
@@ -105,7 +105,7 @@
         transition: background-color 0.18s ease, color 0.18s ease;
     }
 
-    /* Active state — single class, no utility conflicts */
+    /* Active state: single class, no utility conflicts */
     .reaction.is-active {
         background: var(--color-katt-accent);
         color: #fff;

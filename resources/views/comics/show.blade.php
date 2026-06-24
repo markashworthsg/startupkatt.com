@@ -2,7 +2,7 @@
     $site = config('comics.site');
     $preview = $preview ?? false;
     $previewToken = $previewToken ?? null;
-    $title = $comic->title.' — '.$site['name'].' #'.$comic->number;
+    $title = $comic->title.': '.$site['name'].' #'.$comic->number;
     $description = $comic->meta_description;
     $canonical = $comic->url;
     $ogImage = $comic->og_image_url;
@@ -41,14 +41,14 @@
 <article class="flex flex-col items-center">
     @if($preview)
         <div class="w-full mb-4 rounded-md border border-[var(--color-katt-accent)] bg-[var(--color-katt-accent)]/10 px-4 py-2 text-sm text-center font-semibold">
-            👁 Preview — scheduled for {{ $comic->published_at->format('F j, Y') }}, not yet public.
+            👁 Preview: scheduled for {{ $comic->published_at->format('F j, Y') }}, not yet public.
             <a href="{{ route('preview', $previewToken) }}" class="underline">Back to all upcoming</a>
         </div>
     @endif
 
     <header class="w-full text-center mb-4">
         <h1 class="text-2xl sm:text-3xl font-extrabold" style="font-family: var(--font-display)">
-            #{{ $comic->number }} — {{ $comic->title }}
+            #{{ $comic->number }}: {{ $comic->title }}
         </h1>
         <p class="text-sm text-black/50 mt-1">
             <time datetime="{{ $comic->published_at->toDateString() }}">
@@ -84,7 +84,7 @@
         @endif
     </figure>
 
-    {{-- Reactions (login-free voting) — only on live strips, never previews --}}
+    {{-- Reactions (login-free voting): only on live strips, never previews --}}
     @unless($preview)
         <x-comic-reactions :comic="$comic" class="mt-6" />
     @endunless

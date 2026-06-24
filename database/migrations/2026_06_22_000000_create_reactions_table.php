@@ -13,7 +13,7 @@ return new class extends Migration
 
             $table->foreignId('comic_id')->constrained()->cascadeOnDelete();
 
-            // Reaction key — one of the keys in config('comics.reactions').
+            // Reaction key: one of the keys in config('comics.reactions').
             $table->string('reaction', 32);
 
             // Denormalised running tally for this (comic, reaction) pair.

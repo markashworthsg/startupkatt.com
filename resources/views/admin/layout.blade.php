@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{-- Admin is private — never index it. --}}
+    {{-- Admin is private. Never index it. --}}
     <meta name="robots" content="noindex, nofollow">
-    <title>{{ $title ?? 'Admin' }} — Startup Katt</title>
+    <title>{{ $title ?? 'Admin' }}: Startup Katt</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen flex flex-col font-sans antialiased">

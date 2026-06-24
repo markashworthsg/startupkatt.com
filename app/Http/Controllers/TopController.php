@@ -10,7 +10,7 @@ class TopController extends Controller
     protected const LIMIT = 25;
 
     /**
-     * The "top strips" leaderboard — a content/SEO loop built on real reader
+     * The "top strips" leaderboard: a content/SEO loop built on real reader
      * votes. `/top` ranks by total reactions; `/top/{reaction}` ranks by a
      * single reaction (e.g. /top/funny, /top/unhinged).
      */

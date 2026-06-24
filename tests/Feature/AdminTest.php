@@ -140,7 +140,7 @@ class AdminTest extends TestCase
         $this->put("/admin/comics/{$comic->slug}", [
             'title'        => 'Still Same Day',
             'alt_text'     => $comic->alt_text,
-            'published_at' => '2026-06-20', // its own date — must not trip the unique rule
+            'published_at' => '2026-06-20', // its own date, must not trip the unique rule
         ], $this->asAdmin())->assertSessionHasNoErrors();
 
         $this->assertSame('Still Same Day', $comic->refresh()->title);

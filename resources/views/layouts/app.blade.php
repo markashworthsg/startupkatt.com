@@ -50,7 +50,7 @@
     @stack('schema')
     @stack('styles')
 
-    {{-- beehiiv attribution tracking — records where subscribers came from.
+    {{-- beehiiv attribution tracking. Records where subscribers came from.
          Loads only when a beehiiv form is configured. --}}
     @if(config('comics.beehiiv.form_id'))
         <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>

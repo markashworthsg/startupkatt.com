@@ -1,6 +1,6 @@
 @php
     $site = config('comics.site');
-    $title = $site['name'].' — '.$site['tagline'];
+    $title = $site['name'].': '.$site['tagline'];
     $description = $site['description'];
 @endphp
 

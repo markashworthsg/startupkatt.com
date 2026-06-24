@@ -5,7 +5,7 @@
 @php
     $site = config('comics.site');
     $url = $comic->url;
-    $text = $comic->title.' — '.$site['name'];
+    $text = $comic->title.': '.$site['name'];
     $enc = rawurlencode($url);
     $encText = rawurlencode($text);
 

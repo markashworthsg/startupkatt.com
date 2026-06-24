@@ -90,7 +90,7 @@ class Comic extends Model
         return static::published()->orderByDesc('published_at')->first();
     }
 
-    /** First/last across the whole pipeline (incl. scheduled) — preview nav. */
+    /** First/last across the whole pipeline (incl. scheduled), preview nav. */
     public static function firstOverall(): ?Comic
     {
         return static::orderBy('published_at')->first();

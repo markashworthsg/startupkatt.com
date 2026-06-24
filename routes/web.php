@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ComicController::class, 'home'])->name('home');
 
-// Admin metadata editor — gated by a single HTTP Basic credential (see config/comics.php).
+// Admin metadata editor, gated by a single HTTP Basic credential (see config/comics.php).
 Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [ComicAdminController::class, 'index'])->name('index');
     Route::get('/comics/{comic}/edit', [ComicAdminController::class, 'edit'])->name('comics.edit');

@@ -14,11 +14,11 @@
         ? 'The '.$meta['superlative'].' Startup Katt strips'
         : 'The most-reacted Startup Katt strips';
 
-    $title = $heading.' — '.$site['name'];
+    $title = $heading.': '.$site['name'];
 
     $description = $reaction
         ? 'The Startup Katt strips readers voted "'.$meta['label'].'" '.$meta['emoji'].' the most. Ranked by real reader reactions, updated as people vote.'
-        : 'The Startup Katt strips readers react to most — funniest, most shocking, most unhinged. Ranked by real reader votes, updated continuously.';
+        : 'The Startup Katt strips readers react to most: funniest, most shocking, most unhinged. Ranked by real reader votes, updated continuously.';
 
     $canonical = route('top', $reaction);
 
@@ -61,7 +61,7 @@
         [
             '@type' => 'Question',
             'name' => 'What does the "disturbingly relatable" reaction mean?',
-            'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'It is Startup Katt\'s unhinged reaction — the "this hit too close to home" vote for startup life. The most unhinged strips leaderboard ranks the strips that earned it the most.'],
+            'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'It is Startup Katt\'s unhinged reaction: the "this hit too close to home" vote for startup life. The most unhinged strips leaderboard ranks the strips that earned it the most.'],
         ],
     ],
 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
@@ -72,7 +72,7 @@
 <header class="mb-6">
     <h1 class="text-3xl font-extrabold" style="font-family: var(--font-display)">{{ $heading }}</h1>
     <p class="mt-2 text-black/60">
-        Ranked by real reader votes — no editors, just what landed.
+        Ranked by real reader votes. No editors, just what landed.
     </p>
     <p class="mt-1 text-xs text-black/40">
         Last updated <time datetime="{{ $updated->toDateString() }}">{{ $updated->format('F j, Y') }}</time>
@@ -96,7 +96,7 @@
 
 @if($comics->isEmpty())
     <p class="text-black/60">
-        No votes counted yet — be the first to react.
+        No votes counted yet. Be the first to react.
         <a href="{{ route('home') }}" class="font-semibold underline decoration-black/20 hover:text-[var(--color-katt-accent)]">Read the latest strip →</a>
     </p>
 @else
@@ -125,7 +125,7 @@
     </ol>
 @endif
 
-{{-- Visible FAQ (mirrors the FAQ schema above — an AEO signal) --}}
+{{-- Visible FAQ (mirrors the FAQ schema above, an AEO signal) --}}
 <section class="mt-12 border-t border-black/10 pt-8">
     <h2 class="text-xl font-extrabold mb-4" style="font-family: var(--font-display)">Questions</h2>
     <div class="space-y-5">
@@ -135,7 +135,7 @@
         </div>
         <div>
             <h3 class="font-semibold">What does the "disturbingly relatable" reaction mean?</h3>
-            <p class="mt-1 text-black/70 leading-relaxed">It's Startup Katt's unhinged reaction — the "this hit too close to home" vote for startup life. The <a href="{{ route('top', 'unhinged') }}" class="font-semibold underline decoration-black/20 hover:text-[var(--color-katt-accent)]">most unhinged strips</a> leaderboard ranks the strips that earned it most.</p>
+            <p class="mt-1 text-black/70 leading-relaxed">It's Startup Katt's unhinged reaction: the "this hit too close to home" vote for startup life. The <a href="{{ route('top', 'unhinged') }}" class="font-semibold underline decoration-black/20 hover:text-[var(--color-katt-accent)]">most unhinged strips</a> leaderboard ranks the strips that earned it most.</p>
         </div>
     </div>
 

@@ -62,7 +62,7 @@
     var fallback = document.querySelector('[data-beehiiv-fallback]');
     if (!fallback) return;
     // Give the embed a few seconds; if no beehiiv iframe was injected, it was
-    // blocked or failed — surface the hosted-page link instead.
+    // blocked or failed, surface the hosted-page link instead.
     setTimeout(function () {
         if (!document.querySelector('iframe[src*="beehiiv.com"]')) {
             fallback.hidden = false;

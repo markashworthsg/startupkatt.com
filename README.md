@@ -1,6 +1,6 @@
 # Startup Katt 🐱
 
-The home of **Startup Katt** — a daily AI-generated webcomic about a cat trying to build a startup. (His friends call him Startup Cat. Nobody calls him Startup Katt.)
+The home of **Startup Katt**: a daily AI-generated webcomic about a cat trying to build a startup. (His friends call him Startup Cat. Nobody calls him Startup Katt.)
 
 Laravel 12 app with a one-strip-at-a-time reader, a per-comic SEO/AEO-optimized URL for every strip, an automatic **folder-drop** publishing pipeline, RSS feed, and XML sitemap. Built to keep extending with Windsurf / Devin / Claude.
 
@@ -17,7 +17,7 @@ npm install
 cp .env.example .env
 php artisan key:generate
 
-# 3. Database (SQLite by default — zero setup)
+# 3. Database (SQLite by default, zero setup)
 touch database/database.sqlite      # already present in this repo, but just in case
 php artisan migrate
 
@@ -32,9 +32,9 @@ php artisan serve  # → http://127.0.0.1:8000
 ```
 
 > The Blade layout loads CSS/JS through Vite, so build the assets once (`npm run build`)
-> — or keep `npm run dev` running — before serving **or running the test suite**.
+> Or keep `npm run dev` running, before serving **or running the test suite**.
 
-## Publishing comics — the folder-drop workflow
+## Publishing comics: the folder-drop workflow
 
 1. Drop image files (`.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`) into:
    ```
@@ -69,26 +69,26 @@ A scheduler entry already runs the import daily (`routes/console.php`). Add one 
 | URL | What |
 | --- | --- |
 | `/` | Latest published comic (the reader) |
-| `/comic/{slug}` | A single comic — its own SEO page |
+| `/comic/{slug}` | A single comic, its own SEO page |
 | `/archive` | Grid of every published comic |
 | `/feed` | RSS 2.0 feed (also drives beehiiv RSS-to-email) |
 | `/sitemap.xml` | XML sitemap of all published comics |
 | `/robots.txt` | Allows search + AI/answer engines |
-| `/admin` | Metadata editor (HTTP Basic — see below) |
+| `/admin` | Metadata editor (HTTP Basic, see below) |
 
 Future-dated comics return **404** until their release date, so nothing leaks early.
 
-## Admin — editing comic metadata
+## Admin: editing comic metadata
 
 The importer fills in placeholder `title` / `alt_text` and leaves `caption` / `description` blank. Polish them (and override a release date) at **`/admin`**:
 
 ```env
-# .env — set both to unlock /admin. Leave ADMIN_PASSWORD blank to keep it locked (403).
+# .env: set both to unlock /admin. Leave ADMIN_PASSWORD blank to keep it locked (403).
 ADMIN_USERNAME=admin
 ADMIN_PASSWORD=change-me
 ```
 
-It's a single HTTP Basic gate — no users table, no registration. The editor lists every comic (live **and** scheduled), and editing one lets you change its `title`, `alt_text`, `caption`, `description`, and `published_at`. The release date stays unique — one comic per calendar day — and edits show up immediately on the public strip page, feed, and sitemap. The admin area is `noindex`.
+It's a single HTTP Basic gate, no users table, no registration. The editor lists every comic (live **and** scheduled), and editing one lets you change its `title`, `alt_text`, `caption`, `description`, and `published_at`. The release date stays unique (one comic per calendar day), and edits show up immediately on the public strip page, feed, and sitemap. The admin area is `noindex`.
 
 ## SEO / AEO
 

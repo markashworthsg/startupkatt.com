@@ -46,7 +46,7 @@ class ComicAdminController extends Controller
                         ->exists();
 
                     if ($clash) {
-                        $fail('Another comic is already scheduled for that date — one comic per day.');
+                        $fail('Another comic is already scheduled for that date. One comic per day.');
                     }
                 },
             ],
