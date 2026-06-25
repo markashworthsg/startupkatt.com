@@ -23,7 +23,6 @@
         ],
         'publisher' => [
             '@type' => 'Person',
-            'name' => $creator,
             'url' => $linkedin,
         ],
     ];
@@ -89,7 +88,7 @@
     </h2>
     <p class="leading-relaxed text-black/80">
         The comics, characters, and writing are &copy; {{ date('Y') }}
-        {{ $creator }}. You are very welcome to share a strip, link to it, or
+        Startup Katt. You are very welcome to share a strip, link to it, or
         send it to the one person on your team who needs to see it. Please keep
         the watermark and link back here. Do not sell our cat, slap him on
         merchandise, or feed the strips into a model to spin up a competing cat.

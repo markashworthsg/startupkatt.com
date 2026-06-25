@@ -30,11 +30,11 @@
         ],
         [
             'q' => 'Is Startup Katt AI-generated?',
-            'a' => 'The art is AI-generated; the jokes, characters, and editorial voice are written and curated by '.$creator.'. Think of it as a human-run comic strip where the drawing tool happens to be a model instead of a pen.',
+            'a' => 'The art is AI-generated; the jokes, characters, and editorial voice are written and curated by a human. Think of it as a human-run comic strip where the drawing tool happens to be a model instead of a pen.',
         ],
         [
             'q' => 'Who makes Startup Katt?',
-            'a' => 'Startup Katt is made by '.$creator.', who spends his days around startups, product, and the strange comedy of trying to make something out of nothing. The comic is where the funnier, more honest version of that lands.',
+            'a' => 'Startup Katt is made by one human, who spends his days around startups, product, and the strange comedy of trying to make something out of nothing. The comic is where the funnier, more honest version of that lands.',
         ],
         [
             'q' => 'How can I follow Startup Katt or get new strips by email?',
@@ -60,7 +60,6 @@
                     'sameAs' => array_values(array_filter([$site['instagram'] ?? null])),
                     'author' => [
                         '@type' => 'Person',
-                        'name' => $creator,
                         'url' => $linkedin,
                         'sameAs' => [$linkedin],
                     ],
@@ -130,7 +129,7 @@
         Who makes it?
     </h2>
     <p class="leading-relaxed text-black/80">
-        Hi, I'm <strong>{{ $creator }}</strong>, the human behind Startup Katt. I spend my
+        Hi, I'm the human behind Startup Katt. I spend my
         days around startups, product, and the strange comedy of trying to make something
         out of nothing. The art is AI-generated; the jokes, the characters, and the voice
         are mine. New strip every day. Pull up a chair.
