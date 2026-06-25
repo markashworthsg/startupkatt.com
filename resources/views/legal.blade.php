@@ -54,6 +54,19 @@
         no malpractice insurance, and a worrying confidence in its own advice.
     </p>
 
+    <figure class="my-8">
+        <img
+            src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url('comics/2026/06/a-word-from-our-lawyers.png') }}"
+            alt="Startup Cat, dressed as a lawyer for the ChatGPT Legal Department, reads a disclaimer that every character and event in the comic is fictional and any resemblance to real persons is purely coincidental, especially if you are a founder, then recommends therapy."
+            width="1536" height="1024"
+            class="w-full rounded-xl border border-black/10 shadow-sm"
+            loading="lazy"
+        >
+        <figcaption class="mt-2 text-sm text-black/50">
+            Our legal team, hard at work.
+        </figcaption>
+    </figure>
+
     <h2 class="text-2xl font-bold mt-10 mb-3" style="font-family: var(--font-display)">
         The fiction bit (the important one)
     </h2>
