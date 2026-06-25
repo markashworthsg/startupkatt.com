@@ -101,7 +101,7 @@
     </h2>
     <p class="leading-relaxed text-black/80">
         The art is AI-generated. The jokes, the characters, and the editorial
-        voice are written and curated by a human ({{ $creator }}). We mention
+        voice are written and curated by a human. We mention
         this here because we mention it everywhere, not because a model made us.
     </p>
 
