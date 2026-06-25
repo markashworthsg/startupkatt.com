@@ -72,4 +72,10 @@ class ComicController extends Controller
     {
         return view('about');
     }
+
+    /** Legal, privacy, and the fiction disclaimer (in a lawyerly voice). */
+    public function legal()
+    {
+        return view('legal');
+    }
 }

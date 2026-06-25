@@ -81,7 +81,9 @@
 
     <footer class="border-t border-black/10 mt-12">
         <div class="max-w-3xl mx-auto px-4 py-6 text-sm text-black/60 flex flex-col sm:flex-row gap-2 sm:justify-between">
-            <p>&copy; {{ date('Y') }} {{ $site['name'] }}. His friends call him Startup Cat.</p>
+            <p>&copy; {{ date('Y') }} {{ $site['name'] }}. His friends call him Startup Cat.
+                <a href="{{ route('legal') }}" class="font-medium underline decoration-black/20 hover:text-[var(--color-katt-accent)]">Legal &amp; privacy</a>.
+            </p>
             <p class="flex items-center gap-3">
                 @if(!empty($site['instagram']))
                     <a href="{{ $site['instagram'] }}" target="_blank" rel="noopener"

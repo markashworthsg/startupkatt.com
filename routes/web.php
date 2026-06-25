@@ -21,6 +21,7 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
 
 Route::get('/archive', [ComicController::class, 'archive'])->name('comics.archive');
 Route::get('/about', [ComicController::class, 'about'])->name('about');
+Route::get('/legal', [ComicController::class, 'legal'])->name('legal');
 
 // Top-strips leaderboard (content/SEO loop built on reaction tallies).
 // /top = overall; /top/{reaction} = a single reaction's leaderboard.
