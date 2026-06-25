@@ -57,7 +57,7 @@
     <figure class="my-8">
         <img
             src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url('comics/2026/06/a-word-from-our-lawyers.png') }}"
-            alt="Startup Cat, dressed as a lawyer for the ChatGPT Legal Department, reads a disclaimer that every character and event in the comic is fictional and any resemblance to real persons is purely coincidental, especially if you are a founder, then recommends therapy."
+            alt="Startup Cat, dressed as a lawyer for the ChatGPT Legal Department, reads a disclaimer that all characters and events are fictional and any resemblance to real people or startups is purely coincidental. If you think the comic is about you it probably isn't, but if you genuinely resemble Startup Cat, take the afternoon off."
             width="1536" height="1024"
             class="w-full rounded-xl border border-black/10 shadow-sm"
             loading="lazy"
