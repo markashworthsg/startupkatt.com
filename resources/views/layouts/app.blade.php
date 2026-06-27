@@ -13,6 +13,12 @@
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
     <meta name="theme-color" content="#ff6b35">
 
+    {{-- Google Search Console ownership verification. Renders only when
+         GOOGLE_SITE_VERIFICATION is set. Safe to leave on permanently. --}}
+    @if(config('comics.search_console.verification'))
+        <meta name="google-site-verification" content="{{ config('comics.search_console.verification') }}">
+    @endif
+
     @php
         $site = config('comics.site');
         $metaTitle = trim($title ?? $site['name']);
@@ -54,6 +60,16 @@
          Loads only when a beehiiv form is configured. --}}
     @if(config('comics.beehiiv.form_id'))
         <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+    @endif
+
+    {{-- Plausible analytics: cookieless, privacy-first. Loads only when a
+         domain is configured (PLAUSIBLE_DOMAIN). The second line is the
+         official stub so window.plausible() queues custom events/goals (e.g.
+         "Newsletter Signup") even before the script finishes loading. --}}
+    @if(config('comics.analytics.domain'))
+        <script defer data-domain="{{ config('comics.analytics.domain') }}"
+                src="{{ config('comics.analytics.src') }}"></script>
+        <script>window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
     @endif
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])

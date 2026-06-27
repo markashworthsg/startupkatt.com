@@ -152,6 +152,51 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Analytics (Plausible: cookieless, privacy-first)
+    |--------------------------------------------------------------------------
+    |
+    | Leave PLAUSIBLE_DOMAIN blank to disable analytics entirely (no script is
+    | emitted, no third-party request). When set, a single ~1KB script loads
+    | in the <head> (see layouts/app.blade.php) and the on-brand newsletter
+    | form fires a "Newsletter Signup" goal on success.
+    |
+    | We use Plausible over GA4/Amplitude on purpose: no cookies (so no consent
+    | banner), no cross-site tracking, no personal data — which keeps the
+    | promises on the /legal privacy page true. See CLAUDE.md → "Analytics".
+    |
+    |   domain => the property name in your Plausible dashboard, usually the
+    |             bare host, e.g. "startupkatt.com".
+    |   src    => the script URL. Default is Plausible Cloud. Override for a
+    |             self-hosted instance, a custom domain / proxy, or to switch
+    |             to an extended script (e.g. .../js/script.outbound-links.js).
+    |             Custom events ("Newsletter Signup") work with the default.
+    |
+    */
+
+    'analytics' => [
+        'domain' => env('PLAUSIBLE_DOMAIN'),
+        'src'    => env('PLAUSIBLE_SRC', 'https://plausible.io/js/script.js'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Google Search Console (ownership verification)
+    |--------------------------------------------------------------------------
+    |
+    | The verification token from a URL-prefix property's "HTML tag" method.
+    | When set, layouts/app.blade.php emits the <meta google-site-verification>
+    | tag. Leave blank to emit nothing. Search Console is where SEO/AEO work
+    | actually surfaces (queries, impressions, CTR, indexing); pair it with
+    | Plausible (audience) and on-site reactions (engagement).
+    |
+    */
+
+    'search_console' => [
+        'verification' => env('GOOGLE_SITE_VERIFICATION'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Admin (metadata editor)
     |--------------------------------------------------------------------------
     |

@@ -84,9 +84,15 @@
         @endif
     </figure>
 
+    {{-- Primary CTA: follow the strip. Kept directly under the art so it's the
+         first thing in reach (no scroll past reactions/nav to find it). --}}
+    @unless($preview)
+        <x-newsletter-signup class="mt-6" />
+    @endunless
+
     {{-- Reactions (login-free voting): only on live strips, never previews --}}
     @unless($preview)
-        <x-comic-reactions :comic="$comic" class="mt-6" />
+        <x-comic-reactions :comic="$comic" class="mt-8" />
     @endunless
 
     {{-- Share --}}
@@ -98,8 +104,6 @@
         :first="$preview ? \App\Models\Comic::firstOverall() : null"
         :latest="$preview ? \App\Models\Comic::latestOverall() : null"
         class="mt-6" />
-
-    <x-newsletter-signup class="mt-10" />
 </article>
 
 {{-- Engagement nudge: teases the most-reacted strip, links to /top. Hidden in

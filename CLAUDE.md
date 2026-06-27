@@ -66,6 +66,34 @@ The site runs fine without beehiiv. When the user is ready, there are three hook
 
 Important: the apex domain `startupkatt.com` is THIS Laravel app. beehiiv should live on a subdomain (e.g. `news.startupkatt.com`) or its free beehiiv subdomain. Do not move the apex to beehiiv.
 
+## Analytics (Plausible, cookieless)
+
+Traffic analytics are env-gated, same pattern as beehiiv. Set `PLAUSIBLE_DOMAIN`
+(your Plausible property, e.g. `startupkatt.com`) in `.env` to switch them on;
+leave it blank and **nothing** is emitted (no script, no third-party request).
+`PLAUSIBLE_SRC` overrides the script URL for self-hosting / proxy / extended
+scripts. Config lives in `config/comics.php` → `analytics`.
+
+Three hook points:
+
+1. **Pageviews.** `resources/views/layouts/app.blade.php` emits the Plausible
+   script + the `window.plausible` queue stub in `<head>`, gated on
+   `config('comics.analytics.domain')`.
+2. **Signup goal.** `resources/views/components/newsletter-signup.blade.php`
+   fires `window.plausible('Newsletter Signup')` on subscribe success (and on
+   the hosted-link fallback click). Create a custom-event Goal named exactly
+   `Newsletter Signup` in the Plausible dashboard to see the funnel.
+3. **Privacy page.** `resources/views/legal.blade.php` discloses Plausible
+   (cookieless, no personal data, no cross-site tracking). If you change the
+   analytics tool, update that page — it currently promises no cookies / no
+   consent banner, which is true for Plausible but not for GA4.
+
+Why Plausible over GA4/Amplitude: cookieless (no consent banner), no cross-site
+tracking, keeps the `/legal` privacy promises honest. Amplitude is product
+analytics (overkill for a no-login webcomic); GA4 needs a cookie banner. Pair
+this with Google Search Console (acquisition) and the on-site reactions /
+leaderboard (engagement) — analytics covers audience.
+
 ## Things that are intentionally NOT here (good next tasks)
 
 - ~~No admin/upload UI~~: a metadata editor now lives at `/admin` (edit `title`/`alt_text`/`caption`/`description` + override `published_at`), gated by a single HTTP Basic credential (`ADMIN_USERNAME`/`ADMIN_PASSWORD`, see `config/comics.php`). Publishing itself is still folder-drop by design; there's deliberately no upload form. A future add could let admins upload art or manage the schedule visually.

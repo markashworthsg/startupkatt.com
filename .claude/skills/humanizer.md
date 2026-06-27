@@ -237,7 +237,7 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 **Problem:** LLMs use em dashes far more than humans, mimicking "punchy" sales writing. For Startup Katt copy (comic captions, alt text, descriptions, newsletter, site copy), em dashes are banned in all output. Treat them as a tell.
 
-**The rule:** Strip every em dash (U+2014) and en dash (U+2013) used as punctuation. Replace with a comma, period, colon, semicolon, parentheses, or just a space, depending on what fits. Applies to ALL written content, not just clarity maps. Do not leave a single em dash in the output. Run a final scan for the em dash character before declaring the text humanized. Also strip double-hyphens that act as a stand-in for an em dash.
+**The rule:** Strip every em dash (U+2014) and en dash (U+2013) used as punctuation. Replace with a comma, period, colon, semicolon, parentheses, or just a space, depending on what fits. Applies to ALL written content. Do not leave a single em dash in the output. Run a final scan for the em dash character before declaring the text humanized. Also strip double-hyphens that act as a stand-in for an em dash.
 
 **Replacement guide:**
 - Aside or interruption: use commas. "the founder, who shipped solo,"

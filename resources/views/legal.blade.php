@@ -133,16 +133,26 @@
             from any email, any time, and we forget you cheerfully.
         </li>
         <li>
+            <strong>Privacy-friendly analytics.</strong> We use
+            <a href="https://plausible.io/data-policy" target="_blank" rel="noopener"
+               class="font-medium underline decoration-black/20 hover:text-[var(--color-katt-accent)]">Plausible</a>
+            to count visits and see which strips land. It sets
+            <strong>no cookies</strong>, collects no personal data, and cannot
+            follow you to other websites. We see aggregate numbers like page
+            views and where readers came from, never individual people. That is
+            why there is no annoying cookie banner on this site.
+        </li>
+        <li>
             <strong>Boring server logs.</strong> Like every website on Earth,
             the web server keeps standard request logs (IP, time, page) for
             security and debugging. Nothing exciting, nothing sold.
         </li>
     </ul>
     <p class="leading-relaxed text-black/80 mt-4">
-        What we do <strong>not</strong> do: no ad networks, no third-party
-        tracking pixels, no analytics that follow you around, no selling your
-        data to anyone for any reason. We make a cat comic. We are not in the
-        surveillance business.
+        What we do <strong>not</strong> do: no ad networks, no advertising
+        pixels, no cross-site tracking, no cookies that follow you around, no
+        selling your data to anyone for any reason. We make a cat comic. We are
+        not in the surveillance business.
     </p>
 
     <h2 class="text-2xl font-bold mt-10 mb-3" style="font-family: var(--font-display)">

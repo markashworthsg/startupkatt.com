@@ -75,6 +75,7 @@
                 href="{{ $hostedUrl }}"
                 target="_blank"
                 rel="noopener"
+                onclick="if(window.plausible){window.plausible('Newsletter Signup')}"
                 class="mt-4 inline-block rounded-xl border-2 border-[var(--color-katt-ink)] bg-[var(--color-katt-accent)] px-5 py-3 font-bold text-white transition active:translate-y-px hover:bg-[var(--color-katt-ink)]"
             >
                 Get the daily strip
@@ -126,6 +127,8 @@
                 return res.json().then(function (data) { return { res: res, data: data }; });
             }).then(function (out) {
                 if (out.res.ok && out.data.ok) {
+                    // Record the signup goal in Plausible (no-op if disabled).
+                    if (window.plausible) { window.plausible('Newsletter Signup'); }
                     // Swap the whole form for the win state. No going back.
                     form.innerHTML = '<p class="rounded-xl border-2 border-[var(--color-katt-ink)] bg-white px-4 py-3 text-sm font-semibold text-[var(--color-katt-ink)]">' + out.data.message + '</p>';
                     return;

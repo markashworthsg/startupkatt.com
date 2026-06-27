@@ -1,14 +1,14 @@
 ---
 name: seo-aeo-content
-version: 1.1.0
+version: 2.0.0
 description: |
-  SEO and AEO (Answer Engine Optimization) content strategy for 2026.
-  Use when writing blog posts, articles, landing pages, or any content
-  intended to drive organic traffic or AI citations. Grounded in HubSpot's
-  2026 research across 10,000 URLs and 8 AI engines (AI Overviews, Gemini,
-  Perplexity, ChatGPT, SearchGPT, Grok, Google AI Mode, Copilot), which
-  identified the on-page signals that actually predict citations and the
-  buyer-journey stages where citations concentrate.
+  SEO and AEO (Answer Engine Optimization) strategy for 2026, applied to the
+  Startup Katt webcomic. Use when writing comic metadata (title, alt_text,
+  caption/transcript, description), companion posts, landing/about pages, or any
+  page meant to drive organic traffic or AI citations. Grounded in HubSpot's 2026
+  research across 10,000 URLs and 8 AI engines (AI Overviews, Gemini, Perplexity,
+  ChatGPT, SearchGPT, Grok, Google AI Mode, Copilot), which identified the on-page
+  signals that actually predict citations.
 allowed-tools:
   - Read
   - Write
@@ -19,88 +19,86 @@ allowed-tools:
 
 # SEO + AEO Content Strategy (2026)
 
-Apply these rules when writing any content for Startup Katt that should rank in search or get cited by AI.
+Apply these rules to any Startup Katt page that should rank in search or get cited by AI. The whole site is built around per-comic SEO/AEO URLs (`/comic/{slug}`), so this is core, not optional.
 
 ## The Core Shift
 
-AI Overviews answer broad informational queries directly in search results. Generic content gets zero clicks even at position 16. Only specific, actionable, data-rich content still drives traffic.
+AI Overviews answer broad informational queries directly in search results. Generic content gets zero clicks even at position 16. Only specific, original, hard-to-replicate content still earns traffic.
 
-**What died:** Generic informational content. "What is X" articles. Broad keyword targeting. Thin programmatic pages.
+**What died:** Generic content. "What is X" articles. Broad keyword targeting. Thin pages that any AI can summarize away.
 
-**What works:** Specific product comparisons. Original data and research. Interactive tools. Bottom-funnel content. Restaurant-guide-level specificity. Exact instructions with real numbers.
+**What works:** Original creative work, specific and searchable situations, real transcripts, and pages an AI cannot reproduce because the content only exists here.
 
 ## Content Rules
 
 ### 1. Kill Generic, Go Specific
 
-Bad: "How to improve your SaaS positioning"
-Good: "Your SaaS homepage scored 34/100. Here's exactly what's wrong with your headline."
+A webcomic's SEO advantage is specificity. People search for the exact, oddly precise moment they're living.
 
-Bad: "What is a value proposition"
-Good: "I graded 50 SaaS homepages. 80% fail the 5-second clarity test. Here's the pattern."
+Bad slug/title: "funny startup comic"
+Good: "the founder who raised a seed round to avoid talking to a customer"
 
-If AI can answer the query in 2 sentences, don't write the article. Write about things AI needs YOUR data to answer.
+Bad: "tech humor"
+Good: "when your cofounder marks the standup as optional"
 
-### 2. Lead With Original Data
+If AI can satisfy the query without your strip, the page won't pull traffic. Aim each strip's metadata at a situation a real person would type into search.
 
-Every article should contain at least one of:
-- Proprietary data from Startup Katt tools (grader scores, clarity map patterns, engagement data)
-- Specific before/after examples with real URLs
-- Aggregated patterns from real analyses ("we graded 100 SaaS homepages and found...")
-- Screenshots showing real results
+### 2. Lead With Original Content
 
-AI can't generate your data. Data-rich content gets cited, not summarized away.
+The strip itself is the moat. AI can summarize an explainer; it can't reproduce your art or your specific joke. Make that originality legible to crawlers:
+- A real transcript in `caption` (the spoken/visible text of the strip), not a vague summary.
+- Specific, descriptive `alt_text` that names what's actually happening in the panel.
+- A `description` that captures the exact situation, not "a funny comic about startups."
+
+Original art + a real transcript is content that gets cited and linked, not summarized away.
 
 ### 3. Structure for AI Extraction
 
-- Use clear H2/H3 headings that are questions or specific topics
-- Short paragraphs (2-3 sentences max)
-- Explicit answers near the top of each section (inverted pyramid)
-- Include specific numbers, percentages, and examples
-- Use FAQ format where natural
-- Add schema markup (Article, FAQ, HowTo as appropriate)
+- Use clear H2/H3 headings that are questions or specific topics (on any companion/about pages).
+- Short paragraphs (2-3 sentences max).
+- Put the explicit answer near the top of each section (inverted pyramid).
+- Include specific, concrete detail.
+- Use FAQ format where natural (e.g. an about/FAQ page, or "what is this comic" answers).
+- Add schema markup. Comic pages already push JSON-LD; use Article/CreativeWork for strips and FAQ/HowTo where appropriate.
 
-### 4. Target Bottom-Funnel Intent
+### 4. Target Bottom-of-Discovery Intent
 
-Write for people ready to act, not people browsing.
+Write for people close to the moment of finding and following something, not idle browsers.
 
-Bottom-funnel: "how to fix my SaaS homepage headline" (they know they have a problem)
-Top-funnel: "what is SaaS marketing" (AI answers this, zero clicks)
+High intent: "best webcomics about startup life", "comics like Dilbert but for tech founders", "startup cat comic" (they want to find and follow one).
+Low intent: "what is a webcomic" (AI answers this, zero clicks).
 
-Every article should have a clear action the reader can take immediately:
-- Use the positioning grader
-- Get a clarity map
-- Apply a specific framework to their site
+Every page should make the next action obvious:
+- Read the latest strip.
+- Browse the archive (first / prev / next / latest).
+- Subscribe to the newsletter or RSS so the strip comes to them.
 
 ### 5. Build for Brand Search
 
-The goal is not just ranking. The goal is making people search "startup katt" by name. Every article should:
-- Reference Startup Katt tools by name
-- Include unique frameworks (BELT, clarity map methodology)
-- Have a perspective that's identifiably Mark's voice
-- Give enough value that readers bookmark and return
+The goal is not just ranking. The goal is making people search "startup katt" by name. Every page should:
+- Reference the comic and character by name (and lean into the running gag: he's "Startup Katt" but everyone calls him "Startup Cat").
+- Have a consistent, identifiable voice readers recognize.
+- Give enough that people bookmark, subscribe, and come back.
 
 ### 6. Content Types That Survive AI
 
-Prioritize these formats (in order of AI-resistance):
-1. **Interactive tool content** (positioning grader, calculators) - AI can't replicate interaction
-2. **Original research** ("we analyzed 100 homepages...") - AI can't generate your data
-3. **Specific teardowns** (clarity maps with real screenshots) - requires proprietary analysis
-4. **Implementation guides** ("how to rewrite your H1 using BELT") - step-by-step with examples
-5. **Product comparisons** with real experience - nuance AI can't capture
-6. **Opinion/analysis** with a clear point of view - AI gives neutral summaries, readers want takes
+Prioritize formats AI can't fully answer (in order of resilience):
+1. **Original creative work** (the strips themselves) - AI can't generate your comic.
+2. **Real transcripts and archives** - the exact words and the browsable back catalogue.
+3. **Specific situational humor** tied to searchable real-life moments.
+4. **Behind-the-strip / opinion posts** with a clear point of view - AI gives neutral summaries; readers want a take.
+5. **Recommendation / list pages** ("startup webcomics worth following") with genuine perspective.
 
-Avoid these (AI answers them fully):
-- "What is X" definitions
-- Generic best practices lists
-- Broad category overviews
-- Content that could be written by anyone with Google access
+Avoid:
+- "What is X" definitions.
+- Generic best-practices lists.
+- Anything that could be written by anyone with Google access.
 
 ### 7. AEO: Answer Engine Optimization
 
-The playbook for AEO is meaningfully different from SEO. HubSpot's 2026 analysis of 10,000 URLs across 8 AI engines (AI Overview, Gemini, Perplexity, ChatGPT, SearchGPT, Grok, Google AI Mode, Copilot) showed which on-page signals actually predict citations.
+The AEO playbook differs from SEO. HubSpot's 2026 analysis of 10,000 URLs across 8 AI engines (AI Overview, Gemini, Perplexity, ChatGPT, SearchGPT, Grok, Google AI Mode, Copilot) showed which on-page signals actually predict citations.
 
-**Backlinks don't predict AI visibility.** Correlation between backlink count and AI citations is essentially zero (-0.04 to +0.06 across all 8 engines). Stop optimizing for the engine that's shrinking. The on-page signals that DO correlate with citations:
+**Backlinks don't predict AI visibility.** Correlation between backlink count and AI citations is essentially zero (-0.04 to +0.06 across all 8 engines). The on-page signals that DO correlate:
 
 | Signal | Citation lift |
 |---|---|
@@ -112,81 +110,69 @@ The playbook for AEO is meaningfully different from SEO. HubSpot's 2026 analysis
 | Descriptive H1 (specific, not generic) | meaningful lift across engines |
 | Statistics, block quotes, TLDR / summary blocks | meaningful additional lift |
 
-We covered the practical AI-citation correlation analysis (and what to do with the freed-up budget) in [Backlinks Do Not Predict AI Citations](/articles/backlinks-dont-predict-ai-citations). When writing new articles for Startup Katt, treat the table above as the working AEO checklist.
+Treat the table above as the working AEO checklist for any text-heavy page (about, FAQ, companion posts). For strip pages, the equivalent wins are a descriptive title/H1, a real transcript, and accurate alt text.
 
-**Recency matters quantifiably.** AI-cited content is ~25% more recent than Google-cited content (909 vs 1,047 average days since last updated). Adding a visible "last updated: [date]" line is one of the highest-leverage 5-minute fixes available.
+**Recency matters quantifiably.** AI-cited content is ~25% more recent than Google-cited content (909 vs 1,047 average days since last updated). A visible "last updated: [date]" line is one of the highest-leverage 5-minute fixes available.
 
 **Rules to apply:**
-- Use question-style H2s and H3s (literally phrased as questions)
-- Add FAQ schema AND a visible FAQ section
-- Show "last updated" date prominently on every article
-- Include 20+ external links to authoritative sources (this is more than SEO recommended)
-- Lead each section with a TLDR or block quote that's extractable
-- Update content regularly and re-stamp the date
-- Be the authoritative source on a narrow topic — own the niche
-- Write extractable sentences, not flowery prose
+- Use question-style H2s and H3s (literally phrased as questions) on text pages.
+- Add FAQ schema AND a visible FAQ section.
+- Show a date prominently (publish date on strips, "last updated" on evergreen pages).
+- Include external links to authoritative sources where it makes sense on companion posts.
+- Lead each section with an extractable TLDR or quote.
+- Own a narrow niche: be the comic for startup/founder life.
+- Write extractable sentences, not flowery prose.
 
-**FAQ schema on every page — but different FAQs per page.** Google deprecated FAQ schema for SEO (doesn't show in SERPs anymore). It still hits hard for AEO. The mistake people make: copy-pasting the same 5 questions across every page. Each page needs FAQs matched to that page's specific intent. Same content across pages = LLMs notice and discount it.
+**FAQ schema, but different FAQs per page.** Google deprecated FAQ schema for SEO (no longer shown in SERPs) but it still hits hard for AEO. Don't copy-paste the same questions across pages; match FAQs to each page's specific intent. Identical content across pages gets noticed and discounted by LLMs.
 
-### 7a. Buyer Journey: Where Citations Actually Happen
+### 7a. Where Discovery Citations Happen
 
-HubSpot's data on where AI engines pull citations from across the buyer journey:
+AI engines cite most heavily at the "which one should I pick / follow" stage. For a webcomic that maps to recommendation and comparison queries, not definitions:
+- Recommendation pages ("best webcomics about startup life", "funny comics for founders").
+- "Comics like [X]" comparison pages.
+- A strong about/FAQ page that answers "what is Startup Katt" with personality.
 
-- **Solution Evaluation / Final Research: 55%** (the "which one should I pick" stage)
-- **Solution Comparison: 19%** ("X vs Y")
-- **Problem Exploration: 14%** ("why is my X broken")
-- **Solution Education: 12%** ("what is X")
+Definitions and "what is a webcomic" are vanity intent in 2026. Being the comic that gets named when someone asks an AI for "a good startup webcomic" is the whole game.
 
-**Implication:** Stop writing top-of-funnel "what is" content. The citations are at the bottom of the funnel. Write:
-- Comparison pages ("Best X for Y use case", "X vs Y")
-- Evaluation guides with criteria, scoring, real recommendations
-- Use case / persona pages (e.g. "How [Product] solves [specific challenge] for [industry]")
-- Decision frameworks that help someone actually pick
+### 7b. Off-Site Authority (Reddit, LinkedIn, social video)
 
-Top of funnel is a vanity metric in 2026. Bottom of funnel is the whole game.
+For "best X" and recommendation queries, Reddit + LinkedIn + social video dominate AI citations. If you're not present on at least two, you're leaving citations on the table.
 
-### 7b. Off-Site Authority (Reddit, LinkedIn, YouTube)
+- **Reddit**: an aged account genuinely participating in startup/founder and webcomic subs, sharing strips where they actually fit (no spam). LLMs heavily cite Reddit for "best X" threads.
+- **LinkedIn**: post strips as native image posts to founders. Treat it as a publishing surface; startup humor performs there.
+- **Instagram / X / TikTok / Shorts**: comics are native to these. Each post is also a discovery surface that links back to the canonical strip on-site.
 
-For high-intent questions at evaluation/comparison stages, Reddit + LinkedIn + YouTube dominate AI citations. If you're not present on at least two of those three, you're leaving citations on the table.
-
-- **Reddit**: Aged account, no spamming, genuinely helpful answers in niche subs. LLMs heavily cite Reddit threads for "best X" and "X vs Y" queries.
-- **LinkedIn**: Long-form POV posts in your category. Treat it as a publishing platform, not a network.
-- **YouTube**: Question-style titles, dense walk-and-talk videos. Transcripts are crawled. AI engines cite YouTube heavily for tutorials and comparisons.
-
-Third-party "top list" affiliate content also punches above its weight (one MarketsandMarkets CRM list was cited 85 times). Getting included in those lists is a high-leverage AEO play.
+Keep the canonical, indexable strip on `startupkatt.com` for SEO; treat social as distribution, not the home.
 
 ### 8. SEO Technical Checklist
 
-Every article must have:
-- [ ] Title tag under 60 chars, includes primary keyword
-- [ ] Meta description 50-160 chars, compelling click reason
+Every page must have (the repo's existing comic pages already follow most of this):
+- [ ] Title tag under 60 chars, specific and descriptive
+- [ ] Meta description 50-160 chars, gives a reason to click
 - [ ] Canonical URL set
-- [ ] OG and Twitter card tags with custom image
-- [ ] Article schema (JSON-LD)
-- [ ] FAQ schema if article has Q&A sections
-- [ ] Internal links to related tools and articles
-- [ ] External links to authoritative sources (sparingly)
-- [ ] Alt text on all images
-- [ ] URL slug is short and keyword-rich
+- [ ] OG and Twitter card tags with the strip image (with an `og-default.png` fallback)
+- [ ] Article / CreativeWork schema (JSON-LD)
+- [ ] FAQ schema on pages with Q&A sections
+- [ ] Internal links to latest, archive, and related strips
+- [ ] Alt text on every image (already required on comics)
+- [ ] URL slug short and keyword-rich (the per-comic slug)
 
 ### 9. Measuring Success (New Metrics)
 
 Don't just track rankings. Track:
-- **Prompts, not keywords.** Find the actual questions your buyers type into ChatGPT / Perplexity. Track visibility per prompt, per location, per buyer-journey stage. This is the new ranking metric.
-- **AI citations** (does ChatGPT/Perplexity cite your content? by prompt and engine)
-- **Brand search volume** (are more people searching "startup katt"?)
-- **Tool usage** (did the article drive grader/clarity map usage?)
-- **Email captures** (did readers give their email?)
-- **Social shares** (did readers share voluntarily?)
-- **Time on page** (did they actually read it?)
+- **Prompts, not keywords.** Find the actual questions people type into ChatGPT / Perplexity (e.g. "good startup webcomic"). Track whether Startup Katt shows up. This is the new ranking metric.
+- **AI citations** (does ChatGPT/Perplexity name or link the comic? by prompt and engine).
+- **Brand search volume** (are more people searching "startup katt" / "startup cat comic"?).
+- **Return readers and newsletter signups** (did the page turn a visitor into a subscriber?).
+- **Archive depth** (did they read more than one strip?).
+- **Social shares** (did readers share a strip voluntarily?).
 
 Rankings alone mean nothing in 2026.
 
 ### 10. Distribution > Creation
 
-Writing the article is 30% of the work. Distribution is 70%.
-- Share on X with a hook (not just "new blog post")
-- Post key insights to relevant communities
-- Reference in clarity map replies
-- Include in email sequences
-- Cross-link from existing high-traffic pages
+Drawing the strip is part of the work. Getting it in front of people is most of it.
+- Post each strip on X / LinkedIn / Instagram with a hook, not "new comic".
+- Share where the situation actually resonates (relevant subreddits, founder communities).
+- Use the RSS-to-email newsletter so every strip reaches subscribers automatically.
+- Cross-link new strips from the archive and high-traffic pages.
