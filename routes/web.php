@@ -45,6 +45,9 @@ Route::get('/preview/{token}', [PreviewController::class, 'index'])->name('previ
 // Must sit before the /comic/{comic} catch-all so it isn't treated as a slug.
 Route::redirect('/comic/friday', '/comic/seed-round', 301);
 
+// The 3-panel "Blockbuster" strip was replaced by its single-panel version.
+Route::redirect('/comic/blockbuster-said-the-same-thing', '/comic/thinking-like-a-retailer-not-an-innovator', 301);
+
 // Login-free reaction voting (the retention growth loop). POST so it never
 // collides with the GET show route below. Rate-limited per IP so the endpoint
 // can't be hammered to inflate counts (real readers never hit 20/min).
