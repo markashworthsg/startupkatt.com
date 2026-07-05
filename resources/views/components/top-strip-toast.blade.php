@@ -27,7 +27,7 @@
         <button
             type="button"
             data-top-toast-dismiss
-            class="absolute -top-2 -right-2 grid h-6 w-6 place-items-center rounded-full border border-black/10 bg-white text-black/50 shadow-sm transition hover:text-black hover:border-black/30"
+            class="absolute -top-3 -right-3 grid h-9 w-9 place-items-center rounded-full border border-black/10 bg-white text-black/50 shadow-sm transition hover:text-black hover:border-black/30"
             aria-label="Dismiss"
         >
             <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">

@@ -37,12 +37,12 @@
         ],
     ];
 
-    $btn = 'inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-sm font-semibold border border-black/10 bg-white shadow-sm transition hover:bg-[var(--color-katt-accent)] hover:text-white hover:border-transparent hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-katt-accent)]';
+    $btn = 'inline-flex items-center gap-2 min-h-[44px] px-4 py-2.5 rounded-full text-sm font-semibold border border-black/10 bg-white shadow-sm transition hover:bg-[var(--color-katt-accent)] hover:text-white hover:border-transparent hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-katt-accent)]';
 @endphp
 
 <div {{ $attributes->merge(['class' => 'w-full']) }} aria-label="Share this comic">
     <p class="text-xs uppercase tracking-wide text-black/40 mb-3 text-center">Share this strip</p>
-    <div class="flex flex-wrap items-center justify-center gap-2">
+    <div class="flex flex-wrap items-center justify-center gap-2.5">
         @foreach($links as $label => $link)
             <a href="{{ $link['href'] }}"
                class="{{ $btn }}"

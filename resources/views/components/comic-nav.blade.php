@@ -13,7 +13,9 @@
     $latest = $latest ?? \App\Models\Comic::latestComic();
     // Carry the preview token through so future strips stay reachable.
     $q = $previewToken ? '?preview='.urlencode($previewToken) : '';
-    $btn = 'flex-1 text-center px-3 py-2 rounded-md text-sm font-semibold border border-black/10 transition';
+    // min-h-[44px] + flex centering keeps every control a comfortable thumb
+    // target on mobile (Apple HIG / WCAG 2.5.5). px-2 so four fit across a phone.
+    $btn = 'flex-1 flex items-center justify-center min-h-[44px] px-2 py-2.5 rounded-lg text-sm font-semibold border border-black/10 transition';
     $on = 'bg-white hover:bg-[var(--color-katt-accent)] hover:text-white hover:border-transparent';
     $off = 'opacity-40 cursor-not-allowed bg-white';
 @endphp

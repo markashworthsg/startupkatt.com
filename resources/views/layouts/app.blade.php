@@ -76,17 +76,19 @@
 </head>
 <body class="min-h-screen flex flex-col font-sans antialiased">
     <header class="border-b border-black/10">
-        <div class="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
-            <a href="{{ route('home') }}" class="text-2xl font-extrabold tracking-tight"
+        <div class="max-w-3xl mx-auto px-2 sm:px-4 py-2 flex items-center justify-between gap-1">
+            <a href="{{ route('home') }}" class="shrink-0 px-2 py-2 text-xl sm:text-2xl font-extrabold tracking-tight"
                style="font-family: var(--font-display)">
                 Startup Katt
             </a>
-            <nav class="flex items-center gap-4 text-sm font-medium">
-                <a href="{{ route('home') }}" class="hover:text-[var(--color-katt-accent)]">Latest</a>
-                <a href="{{ route('top') }}" class="hover:text-[var(--color-katt-accent)]">Top</a>
-                <a href="{{ route('comics.archive') }}" class="hover:text-[var(--color-katt-accent)]">Archive</a>
-                <a href="{{ route('about') }}" class="hover:text-[var(--color-katt-accent)]">About</a>
-                <a href="{{ route('feed') }}" class="hover:text-[var(--color-katt-accent)]">RSS</a>
+            {{-- Padded links give each item a ~44px tap target (Apple HIG / WCAG 2.5.5).
+                 RSS is a power-user link, so it drops off the crowded mobile bar. --}}
+            <nav class="flex items-center flex-wrap justify-end gap-0.5 sm:gap-1 text-sm font-medium">
+                <a href="{{ route('home') }}" class="px-2 sm:px-2.5 py-2.5 rounded-md hover:bg-black/5 hover:text-[var(--color-katt-accent)]">Latest</a>
+                <a href="{{ route('top') }}" class="px-2 sm:px-2.5 py-2.5 rounded-md hover:bg-black/5 hover:text-[var(--color-katt-accent)]">Top</a>
+                <a href="{{ route('comics.archive') }}" class="px-2 sm:px-2.5 py-2.5 rounded-md hover:bg-black/5 hover:text-[var(--color-katt-accent)]">Archive</a>
+                <a href="{{ route('about') }}" class="px-2 sm:px-2.5 py-2.5 rounded-md hover:bg-black/5 hover:text-[var(--color-katt-accent)]">About</a>
+                <a href="{{ route('feed') }}" class="hidden sm:inline-block px-2.5 py-2.5 rounded-md hover:bg-black/5 hover:text-[var(--color-katt-accent)]">RSS</a>
             </nav>
         </div>
     </header>

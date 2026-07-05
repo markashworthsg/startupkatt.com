@@ -81,7 +81,7 @@
 
 {{-- Reaction tabs --}}
 <nav class="flex flex-wrap gap-2 mb-8" aria-label="Leaderboards">
-    @php $tab = 'inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-semibold transition'; @endphp
+    @php $tab = 'inline-flex items-center gap-1.5 min-h-[44px] rounded-full border px-4 py-2.5 text-sm font-semibold transition'; @endphp
     <a href="{{ route('top') }}"
        class="{{ $tab }} {{ $reaction === null ? 'bg-[var(--color-katt-accent)] text-white border-transparent' : 'border-black/10 bg-white hover:border-[var(--color-katt-accent)]' }}">
         🔥 Most reacted

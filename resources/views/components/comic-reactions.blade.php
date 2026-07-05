@@ -33,7 +33,7 @@
         How'd this one land?
     </p>
 
-    <div class="flex flex-wrap items-center justify-center gap-2">
+    <div class="flex flex-wrap items-center justify-center gap-2.5">
         @foreach($reactions as $key => $meta)
             @php $isActive = $userReaction === $key; @endphp
             <button
@@ -61,12 +61,16 @@
     .reaction {
         display: inline-flex;
         align-items: center;
-        gap: 0.375rem;
+        justify-content: center;
+        gap: 0.5rem;
+        /* 44px min tap target for thumbs (Apple HIG / WCAG 2.5.5). On mobile the
+           label is hidden, so this keeps the emoji+count comfortably tappable. */
+        min-height: 44px;
         border-radius: 9999px;
         border: 1px solid rgba(0, 0, 0, 0.1);
         background: #fff;
-        padding: 0.375rem 0.875rem;
-        font-size: 0.875rem;
+        padding: 0.5rem 1.05rem;
+        font-size: 0.9375rem;
         font-weight: 600;
         line-height: 1;
         color: inherit;
@@ -90,7 +94,7 @@
     }
 
     .reaction__emoji {
-        font-size: 1.05rem;
+        font-size: 1.2rem;
         line-height: 1;
         display: inline-block;
         transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
