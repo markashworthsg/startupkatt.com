@@ -108,6 +108,11 @@
                        class="font-medium underline decoration-black/20 hover:text-[var(--color-katt-accent)]">Instagram</a>
                     <span aria-hidden="true">·</span>
                 @endif
+                @if(!empty($site['telegram']))
+                    <a href="{{ $site['telegram'] }}" target="_blank" rel="noopener"
+                       class="font-medium underline decoration-black/20 hover:text-[var(--color-katt-accent)]">Telegram</a>
+                    <span aria-hidden="true">·</span>
+                @endif
                 <span>Made by
                     <a href="{{ $site['creator_linkedin'] }}" target="_blank" rel="noopener"
                        class="font-medium underline decoration-black/20 hover:text-[var(--color-katt-accent)]">{{ $site['creator'] }}</a>

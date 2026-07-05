@@ -38,7 +38,7 @@
         ],
         [
             'q' => 'How can I follow Startup Katt or get new strips by email?',
-            'a' => 'Subscribe to the RSS feed to get every new strip in your reader, or follow Startup Katt on Instagram so the daily comic shows up in your feed. A new strip lands every single day.',
+            'a' => 'Subscribe to the RSS feed to get every new strip in your reader, follow Startup Katt on Instagram so the daily comic shows up in your feed, or join the Telegram channel. A new strip lands every single day.',
         ],
     ];
 
@@ -57,7 +57,7 @@
                     'url' => route('home'),
                     'description' => $site['description'],
                     'genre' => ['Webcomic', 'Comedy', 'Startups'],
-                    'sameAs' => array_values(array_filter([$site['instagram'] ?? null])),
+                    'sameAs' => array_values(array_filter([$site['instagram'] ?? null, $site['telegram'] ?? null])),
                     'author' => [
                         '@type' => 'Person',
                         'url' => $linkedin,
@@ -160,6 +160,12 @@
             <a href="{{ $site['instagram'] }}" target="_blank" rel="noopener"
                class="inline-flex items-center gap-2 font-semibold hover:text-[var(--color-katt-accent)]">
                 Follow on Instagram
+            </a>
+        @endif
+        @if (!empty($site['telegram']))
+            <a href="{{ $site['telegram'] }}" target="_blank" rel="noopener"
+               class="inline-flex items-center gap-2 font-semibold hover:text-[var(--color-katt-accent)]">
+                Join on Telegram
             </a>
         @endif
         <a href="{{ $linkedin }}" target="_blank" rel="noopener"

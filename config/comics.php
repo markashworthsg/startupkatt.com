@@ -107,6 +107,7 @@ return [
         'author'      => 'Startup Katt',
         'twitter'     => '@startupkatt',
         'instagram'   => 'https://www.instagram.com/startupkatt',
+        'telegram'    => 'https://t.me/startupkatt',
         'description' => 'Startup Katt: a daily AI-generated webcomic following the misadventures of a cat founder. New strip every day. Read the full archive.',
 
         // The human behind the comic. Linked from the footer of every page
