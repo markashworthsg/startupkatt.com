@@ -18,7 +18,7 @@
 
     $description = $reaction
         ? 'The Startup Katt strips readers voted "'.$meta['label'].'" '.$meta['emoji'].' the most. Ranked by real reader reactions, updated as people vote.'
-        : 'The Startup Katt strips readers react to most: funniest, most shocking, most unhinged. Ranked by real reader votes, updated continuously.';
+        : 'The Startup Katt strips readers react to most: funniest, most iconic, most painfully real, most unhinged. Ranked by real reader votes, updated continuously.';
 
     $canonical = route('top', $reaction);
 
@@ -56,12 +56,12 @@
         [
             '@type' => 'Question',
             'name' => 'How are the top Startup Katt strips ranked?',
-            'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'By real reader reactions. Every strip has a one-tap, login-free vote (love it, funny, insightful, shocking, gross, or disturbingly relatable). This page ranks strips by total reactions; each tab ranks by a single reaction. Rankings update continuously as readers vote.'],
+            'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'By real reader reactions. Every strip has a one-tap, login-free vote (iconic, dead, galaxy brain, based, too real, or unhinged). This page ranks strips by total reactions; each tab ranks by a single reaction. Rankings update continuously as readers vote.'],
         ],
         [
             '@type' => 'Question',
-            'name' => 'What does the "disturbingly relatable" reaction mean?',
-            'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'It is Startup Katt\'s unhinged reaction: the "this hit too close to home" vote for startup life. The most unhinged strips leaderboard ranks the strips that earned it the most.'],
+            'name' => 'What does the "too real" reaction mean?',
+            'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'It is the "this hit too close to home" vote for founder life: burnout, runway panic, another all-nighter. The most painfully real strips leaderboard ranks the strips that earned it the most. Its chaotic sibling, "unhinged," ranks the most deranged-startup-energy strips.'],
         ],
     ],
 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
@@ -134,8 +134,8 @@
             <p class="mt-1 text-black/70 leading-relaxed">By real reader reactions. Every strip has a one-tap, login-free vote. This page ranks strips by total reactions; each tab ranks by a single reaction. Rankings update continuously as readers vote.</p>
         </div>
         <div>
-            <h3 class="font-semibold">What does the "disturbingly relatable" reaction mean?</h3>
-            <p class="mt-1 text-black/70 leading-relaxed">It's Startup Katt's unhinged reaction: the "this hit too close to home" vote for startup life. The <a href="{{ route('top', 'unhinged') }}" class="font-semibold underline decoration-black/20 hover:text-[var(--color-katt-accent)]">most unhinged strips</a> leaderboard ranks the strips that earned it most.</p>
+            <h3 class="font-semibold">What does the "too real" reaction mean?</h3>
+            <p class="mt-1 text-black/70 leading-relaxed">It's the "this hit too close to home" vote for founder life: burnout, runway panic, another all-nighter. The <a href="{{ route('top', 'real') }}" class="font-semibold underline decoration-black/20 hover:text-[var(--color-katt-accent)]">most painfully real strips</a> leaderboard ranks the strips that earned it most. Its chaotic sibling, <a href="{{ route('top', 'unhinged') }}" class="font-semibold underline decoration-black/20 hover:text-[var(--color-katt-accent)]">unhinged</a>, ranks the most deranged-startup-energy strips.</p>
         </div>
     </div>
 

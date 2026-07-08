@@ -48,23 +48,23 @@ class ReactionTest extends TestCase
 
         $this->reactFrom('10.0.0.1', $comic, 'funny');
 
-        $this->reactFrom('10.0.0.1', $comic, 'gross')
+        $this->reactFrom('10.0.0.1', $comic, 'real')
             ->assertOk()
             ->assertJsonPath('counts.funny', 0)
-            ->assertJsonPath('counts.gross', 1)
+            ->assertJsonPath('counts.real', 1)
             ->assertJsonPath('total', 1)
-            ->assertJsonPath('userReaction', 'gross');
+            ->assertJsonPath('userReaction', 'real');
     }
 
     public function test_tapping_your_current_reaction_toggles_it_off(): void
     {
         $comic = Comic::factory()->create(['slug' => 'live', 'published_at' => '2026-06-20']);
 
-        $this->reactFrom('10.0.0.1', $comic, 'love');
+        $this->reactFrom('10.0.0.1', $comic, 'iconic');
 
-        $this->reactFrom('10.0.0.1', $comic, 'love')
+        $this->reactFrom('10.0.0.1', $comic, 'iconic')
             ->assertOk()
-            ->assertJsonPath('counts.love', 0)
+            ->assertJsonPath('counts.iconic', 0)
             ->assertJsonPath('total', 0)
             ->assertJsonPath('userReaction', null);
     }
@@ -75,8 +75,8 @@ class ReactionTest extends TestCase
 
         // Same IP fires a flurry of reactions, counts only ever reflect one vote.
         $this->reactFrom('10.0.0.1', $comic, 'funny');
-        $this->reactFrom('10.0.0.1', $comic, 'gross');
-        $this->reactFrom('10.0.0.1', $comic, 'love');
+        $this->reactFrom('10.0.0.1', $comic, 'real');
+        $this->reactFrom('10.0.0.1', $comic, 'iconic');
         $this->reactFrom('10.0.0.1', $comic, 'unhinged')
             ->assertJsonPath('total', 1)
             ->assertJsonPath('counts.unhinged', 1);
@@ -94,9 +94,9 @@ class ReactionTest extends TestCase
         // Same IP, brand-new client with no cookie, votes a different reaction:
         // it moves the existing vote rather than adding a second one.
         $this->flushSession();
-        $this->reactFrom('10.0.0.1', $comic, 'love')
+        $this->reactFrom('10.0.0.1', $comic, 'iconic')
             ->assertJsonPath('counts.funny', 0)
-            ->assertJsonPath('counts.love', 1)
+            ->assertJsonPath('counts.iconic', 1)
             ->assertJsonPath('total', 1);
     }
 
@@ -153,6 +153,6 @@ class ReactionTest extends TestCase
 
         $this->get('/comic/live')
             ->assertOk()
-            ->assertSee('Disturbingly relatable');
+            ->assertSee('Unhinged');
     }
 }

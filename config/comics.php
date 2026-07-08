@@ -78,8 +78,11 @@ return [
     | more readers -> more reactions. Keep this list short so it stays a
     | one-tap ritual, not gamification.
     |
-    | Order here is the order shown in the UI. The last one is deliberately
-    | unhinged: the "this hit too close to home" vote for startup life.
+    | The voice is Gen Z and native to the Startup Katt universe: the whole set
+    | is affectionate (even "unhinged" is praise), so every leaderboard it powers
+    | is one you'd proudly rank. Order here is the order shown in the UI; the last
+    | two close on founder life: "too real" (the "this hit too close to home"
+    | burnout vote) and "unhinged" (the deranged-startup-energy vote).
     |
     | Each entry also carries a `superlative` used to headline its leaderboard
     | page (/top/{reaction}), e.g. "The funniest Startup Katt strips".
@@ -87,12 +90,12 @@ return [
     */
 
     'reactions' => [
-        'love'      => ['emoji' => '😻', 'label' => 'Love it', 'superlative' => 'most loved'],
-        'funny'     => ['emoji' => '😹', 'label' => 'Funny', 'superlative' => 'funniest'],
-        'insightful' => ['emoji' => '🧠', 'label' => 'Insightful', 'superlative' => 'most insightful'],
-        'shocking'  => ['emoji' => '🤯', 'label' => 'Shocking', 'superlative' => 'most shocking'],
-        'gross'     => ['emoji' => '🤢', 'label' => 'Gross', 'superlative' => 'grossest'],
-        'unhinged'  => ['emoji' => '🫠', 'label' => 'Disturbingly relatable', 'superlative' => 'most unhinged'],
+        'iconic'      => ['emoji' => '😻', 'label' => 'Iconic', 'superlative' => 'most iconic'],
+        'funny'       => ['emoji' => '💀', 'label' => 'Dead', 'superlative' => 'funniest'],
+        'galaxybrain' => ['emoji' => '🧠', 'label' => 'Galaxy brain', 'superlative' => 'most galaxy-brained'],
+        'based'       => ['emoji' => '😼', 'label' => 'Based', 'superlative' => 'most based'],
+        'real'        => ['emoji' => '🫠', 'label' => 'Too real', 'superlative' => 'most painfully real'],
+        'unhinged'    => ['emoji' => '🤪', 'label' => 'Unhinged', 'superlative' => 'most unhinged'],
     ],
 
     /*

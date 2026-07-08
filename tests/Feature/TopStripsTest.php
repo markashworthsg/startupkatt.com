@@ -37,8 +37,8 @@ class TopStripsTest extends TestCase
     public function test_overall_leaderboard_ranks_by_total_reactions(): void
     {
         $this->strip('quiet', '2026-06-10', ['funny' => 1]);
-        $this->strip('loud', '2026-06-11', ['funny' => 5, 'love' => 5]);   // total 10
-        $this->strip('middle', '2026-06-12', ['shocking' => 4]);            // total 4
+        $this->strip('loud', '2026-06-11', ['funny' => 5, 'iconic' => 5]); // total 10
+        $this->strip('middle', '2026-06-12', ['based' => 4]);               // total 4
 
         $top = Comic::topOverall();
 
@@ -56,11 +56,11 @@ class TopStripsTest extends TestCase
 
     public function test_per_reaction_leaderboard_ranks_by_that_reaction(): void
     {
-        $this->strip('a', '2026-06-10', ['funny' => 2, 'gross' => 9]);
-        $this->strip('b', '2026-06-11', ['funny' => 8, 'gross' => 1]);
+        $this->strip('a', '2026-06-10', ['funny' => 2, 'real' => 9]);
+        $this->strip('b', '2026-06-11', ['funny' => 8, 'real' => 1]);
 
         $this->assertSame(['b', 'a'], Comic::topByReaction('funny')->pluck('slug')->all());
-        $this->assertSame(['a', 'b'], Comic::topByReaction('gross')->pluck('slug')->all());
+        $this->assertSame(['a', 'b'], Comic::topByReaction('real')->pluck('slug')->all());
     }
 
     public function test_the_top_page_renders_with_a_reaction_filter(): void
@@ -95,7 +95,7 @@ class TopStripsTest extends TestCase
     {
         $this->strip('runner-up', '2026-06-10', ['funny' => 2]);
         $this->strip('chart-topper', '2026-06-11', ['funny' => 50]);
-        $viewing = $this->strip('today', '2026-06-20', ['love' => 1]);
+        $viewing = $this->strip('today', '2026-06-20', ['iconic' => 1]);
 
         $this->get($viewing->url)
             ->assertOk()
