@@ -56,7 +56,7 @@
         [
             '@type' => 'Question',
             'name' => 'How are the top Startup Katt strips ranked?',
-            'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'By real reader reactions. Every strip has a one-tap, login-free vote (iconic, dead, galaxy brain, based, too real, or unhinged). This page ranks strips by total reactions; each tab ranks by a single reaction. Rankings update continuously as readers vote.'],
+            'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'By real reader reactions. Every strip has a one-tap, login-free vote (iconic, dead, galaxy brain, facts, we\'re so back, too real, or unhinged). This page ranks strips by total reactions; each tab ranks by a single reaction. Rankings update continuously as readers vote.'],
         ],
         [
             '@type' => 'Question',

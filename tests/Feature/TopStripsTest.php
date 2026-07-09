@@ -38,7 +38,7 @@ class TopStripsTest extends TestCase
     {
         $this->strip('quiet', '2026-06-10', ['funny' => 1]);
         $this->strip('loud', '2026-06-11', ['funny' => 5, 'iconic' => 5]); // total 10
-        $this->strip('middle', '2026-06-12', ['based' => 4]);               // total 4
+        $this->strip('middle', '2026-06-12', ['facts' => 4]);               // total 4
 
         $top = Comic::topOverall();
 
