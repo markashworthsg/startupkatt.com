@@ -9,23 +9,29 @@ class SecurityHeadersTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_hsts_and_upgrade_headers_are_sent_over_https(): void
+    public function test_upgrade_insecure_requests_is_sent_over_https(): void
     {
         $response = $this->get('https://localhost/');
 
         $response->assertOk();
-        $response->assertHeader('Strict-Transport-Security', 'max-age=31536000');
         $response->assertHeader('Content-Security-Policy', 'upgrade-insecure-requests');
     }
 
-    public function test_hsts_is_not_sent_over_plain_http(): void
+    public function test_hsts_is_never_sent(): void
     {
-        // Guards local http dev and the browser's localhost cache from being
-        // poisoned with HSTS (which would force https on localhost).
-        $response = $this->get('http://localhost/');
+        // HSTS was removed: Singtel intercepts this hostname's TLS, and HSTS
+        // turned that into an unbypassable hard block for Singtel visitors.
+        $response = $this->get('https://localhost/');
 
         $response->assertOk();
         $response->assertHeaderMissing('Strict-Transport-Security');
+    }
+
+    public function test_no_headers_over_plain_http(): void
+    {
+        $response = $this->get('http://localhost/');
+
+        $response->assertOk();
         $response->assertHeaderMissing('Content-Security-Policy');
     }
 }
