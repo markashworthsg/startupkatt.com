@@ -57,6 +57,27 @@ class ComicController extends Controller
         return $configured !== '' && hash_equals($configured, $supplied);
     }
 
+    /**
+     * Redirect to a random published comic. Optional ?not={id} excludes the
+     * strip the reader is already on, so "Random" always changes the page.
+     */
+    public function random(Request $request)
+    {
+        $comic = Comic::published()
+            ->when($request->filled('not'), fn ($q) => $q->where('id', '!=', $request->query('not')))
+            ->inRandomOrder()
+            ->first()
+            // Fallback: if excluding the current strip left nothing (only one
+            // comic exists), just pick any published one.
+            ?? Comic::published()->inRandomOrder()->first();
+
+        if (! $comic) {
+            return redirect()->route('home');
+        }
+
+        return redirect()->to($comic->url);
+    }
+
     /** Full archive grid of every published comic, newest first. */
     public function archive()
     {

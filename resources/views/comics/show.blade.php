@@ -9,8 +9,6 @@
     $ogType = 'article';
     // Never let an unpublished sneak-peek into search.
     $noindex = $preview;
-    // Token suffix for the "next" image link below.
-    $navQuery = $previewToken ? '?preview='.urlencode($previewToken) : '';
 @endphp
 
 @extends('layouts.app')
@@ -57,24 +55,15 @@
         </p>
     </header>
 
-    {{-- Top nav --}}
-    <x-comic-nav :previous="$previous" :next="$next"
-        :preview-token="$previewToken"
-        :first="$preview ? \App\Models\Comic::firstOverall() : null"
-        :latest="$preview ? \App\Models\Comic::latestOverall() : null"
-        class="mb-4" />
-
-    <figure class="w-full">
-        <a href="{{ $next ? $next->url.$navQuery : route('home') }}" title="Next comic">
-            <img
-                src="{{ $comic->image_url }}"
-                alt="{{ $comic->alt_text }}"
-                @if($comic->width) width="{{ $comic->width }}" @endif
-                @if($comic->height) height="{{ $comic->height }}" @endif
-                class="w-full h-auto rounded-lg shadow-md bg-white"
-                fetchpriority="high"
-            >
-        </a>
+    <figure class="w-full" data-swipe>
+        <img
+            src="{{ $comic->image_url }}"
+            alt="{{ $comic->alt_text }}"
+            @if($comic->width) width="{{ $comic->width }}" @endif
+            @if($comic->height) height="{{ $comic->height }}" @endif
+            class="w-full h-auto rounded-lg shadow-md bg-white"
+            fetchpriority="high"
+        >
         @if($comic->caption)
             {{-- Transcript kept for screen readers + crawlers (SEO/AEO), but hidden
                  visually so the plain-text restatement doesn't spoil the joke. --}}
@@ -84,26 +73,36 @@
         @endif
     </figure>
 
-    {{-- Primary CTA: follow the strip. Kept directly under the art so it's the
-         first thing in reach (no scroll past reactions/nav to find it). --}}
-    @unless($preview)
-        <x-newsletter-signup class="mt-6" />
-    @endunless
+    {{-- Primary navigation, right under the punchline so the next strip is in
+         reach (swipe on mobile, ← → on desktop, or these buttons). --}}
+    <x-comic-nav :previous="$previous" :next="$next"
+        :current="$comic"
+        :preview-token="$previewToken"
+        :first="$preview ? \App\Models\Comic::firstOverall() : null"
+        :latest="$preview ? \App\Models\Comic::latestOverall() : null"
+        class="mt-5" />
 
     {{-- Reactions (login-free voting): only on live strips, never previews --}}
     @unless($preview)
         <x-comic-reactions :comic="$comic" class="mt-8" />
     @endunless
 
-    {{-- Share --}}
-    <x-comic-share :comic="$comic" class="mt-6" />
+    {{-- Newsletter CTA: below reactions, so we ask after a reader has actually
+         enjoyed a strip or two (a higher-intent moment than strip #1). --}}
+    @unless($preview)
+        <x-newsletter-signup class="mt-8" />
+    @endunless
 
-    {{-- Bottom nav --}}
+    {{-- Share --}}
+    <x-comic-share :comic="$comic" class="mt-8" />
+
+    {{-- Bottom nav (after the reader has scrolled the whole strip) --}}
     <x-comic-nav :previous="$previous" :next="$next"
+        :current="$comic"
         :preview-token="$previewToken"
         :first="$preview ? \App\Models\Comic::firstOverall() : null"
         :latest="$preview ? \App\Models\Comic::latestOverall() : null"
-        class="mt-6" />
+        class="mt-10" />
 </article>
 
 {{-- Engagement nudge: teases the most-reacted strip, links to /top. Hidden in

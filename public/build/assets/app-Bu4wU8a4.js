@@ -1,1 +1,0 @@
-document.addEventListener("keydown",t=>{if(!t.target.matches("input, textarea, select")){if(t.key==="ArrowLeft"){const e=document.querySelector('[data-nav="prev"]');e&&(window.location.href=e.getAttribute("href"))}if(t.key==="ArrowRight"){const e=document.querySelector('[data-nav="next"]');e&&(window.location.href=e.getAttribute("href"))}}});

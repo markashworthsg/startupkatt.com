@@ -20,6 +20,10 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::get('/archive', [ComicController::class, 'archive'])->name('comics.archive');
+
+// "Give me another one" — redirects to a random published strip. The nav passes
+// ?not={id} so you never land back on the strip you're already reading.
+Route::get('/random', [ComicController::class, 'random'])->name('comics.random');
 Route::get('/about', [ComicController::class, 'about'])->name('about');
 Route::get('/legal', [ComicController::class, 'legal'])->name('legal');
 

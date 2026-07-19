@@ -68,6 +68,35 @@ class ComicBrowsingTest extends TestCase
         $this->assertNull($today->next());
     }
 
+    public function test_random_redirects_to_a_published_comic(): void
+    {
+        $a = Comic::factory()->create(['slug' => 'a', 'published_at' => '2026-06-18']);
+        $b = Comic::factory()->create(['slug' => 'b', 'published_at' => '2026-06-19']);
+        // A future strip must never be a random destination.
+        Comic::factory()->create(['slug' => 'future', 'published_at' => '2026-12-25']);
+
+        $res = $this->get('/random')->assertRedirect();
+        $this->assertContains($res->headers->get('Location'), [$a->url, $b->url]);
+        $this->assertStringNotContainsString('/comic/future', (string) $res->headers->get('Location'));
+    }
+
+    public function test_random_excludes_the_current_strip(): void
+    {
+        $a = Comic::factory()->create(['slug' => 'a', 'published_at' => '2026-06-18']);
+        $b = Comic::factory()->create(['slug' => 'b', 'published_at' => '2026-06-19']);
+
+        // Excluding $a should always land on $b (the only other published strip).
+        $this->get('/random?not='.$a->id)->assertRedirect($b->url);
+    }
+
+    public function test_random_with_a_single_comic_still_redirects_to_it(): void
+    {
+        $only = Comic::factory()->create(['slug' => 'only', 'published_at' => '2026-06-18']);
+
+        // Even when ?not excludes the only strip, fall back rather than 404.
+        $this->get('/random?not='.$only->id)->assertRedirect($only->url);
+    }
+
     public function test_sitemap_and_feed_render(): void
     {
         Comic::factory()->create(['slug' => 'x', 'published_at' => '2026-06-20']);
