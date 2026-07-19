@@ -9,29 +9,55 @@
     $ogType = 'article';
     // Never let an unpublished sneak-peek into search.
     $noindex = $preview;
+
+    $comicSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'ComicStory',
+        'name' => $comic->title,
+        'position' => $comic->number,
+        'url' => $comic->url,
+        'datePublished' => $comic->published_at->toDateString(),
+        'image' => $comic->image_url,
+        'description' => $comic->meta_description,
+        'author' => ['@type' => 'Person', 'name' => $site['author']],
+        'publisher' => ['@type' => 'Organization', 'name' => $site['name']],
+        'isPartOf' => [
+            '@type' => 'ComicSeries',
+            'name' => $site['name'],
+            'url' => route('home'),
+        ],
+    ];
+
+    // Reader reactions are user-submitted engagement: expose them as
+    // schema.org InteractionCounters (one per reaction that has votes) so
+    // answer engines can read the sentiment + popularity signal. Only live
+    // strips, only non-zero counts (no thin/empty markup); summed, these equal
+    // the visible "N reactions so far" total on the page.
+    if (! $preview) {
+        $reactionsMeta = config('comics.reactions');
+        $stats = [];
+        foreach ($comic->reactionCounts() as $key => $n) {
+            if ($n < 1) {
+                continue;
+            }
+            $stats[] = [
+                '@type' => 'InteractionCounter',
+                'interactionType' => 'https://schema.org/LikeAction',
+                'name' => $reactionsMeta[$key]['label'] ?? $key,
+                'userInteractionCount' => $n,
+            ];
+        }
+        if ($stats !== []) {
+            $comicSchema['interactionStatistic'] = $stats;
+        }
+    }
 @endphp
 
 @extends('layouts.app')
 
 @push('schema')
 <script type="application/ld+json">
-{!! json_encode([
-    '@context' => 'https://schema.org',
-    '@type' => 'ComicStory',
-    'name' => $comic->title,
-    'position' => $comic->number,
-    'url' => $comic->url,
-    'datePublished' => $comic->published_at->toDateString(),
-    'image' => $comic->image_url,
-    'description' => $comic->meta_description,
-    'author' => ['@type' => 'Person', 'name' => $site['author']],
-    'publisher' => ['@type' => 'Organization', 'name' => $site['name']],
-    'isPartOf' => [
-        '@type' => 'ComicSeries',
-        'name' => $site['name'],
-        'url' => route('home'),
-    ],
-], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+{!! json_encode($comicSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
 </script>
 @endpush
 

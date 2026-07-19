@@ -155,4 +155,31 @@ class ReactionTest extends TestCase
             ->assertOk()
             ->assertSee('Unhinged');
     }
+
+    public function test_reactions_are_exposed_as_json_ld_interaction_counters(): void
+    {
+        $comic = Comic::factory()->create(['slug' => 'live', 'published_at' => '2026-06-20']);
+
+        $this->reactFrom('10.0.0.1', $comic, 'iconic');
+        $this->reactFrom('10.0.0.2', $comic, 'funny');
+
+        $res = $this->get('/comic/live')->assertOk();
+
+        // The reaction tallies (user-submitted content) ship as schema.org
+        // InteractionCounters so answer engines can read the engagement signal.
+        $res->assertSee('interactionStatistic', false);
+        $res->assertSee('"@type":"InteractionCounter"', false);
+        $res->assertSee('https://schema.org/LikeAction', false);
+        $res->assertSee('"userInteractionCount":1', false);
+    }
+
+    public function test_json_ld_has_no_interaction_stats_before_anyone_reacts(): void
+    {
+        Comic::factory()->create(['slug' => 'quiet', 'published_at' => '2026-06-20']);
+
+        // No votes yet: don't emit empty/thin engagement markup.
+        $this->get('/comic/quiet')
+            ->assertOk()
+            ->assertDontSee('interactionStatistic', false);
+    }
 }
