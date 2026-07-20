@@ -157,6 +157,36 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Telegram (push distribution for the channel)
+    |--------------------------------------------------------------------------
+    |
+    | Leave TELEGRAM_BOT_TOKEN or TELEGRAM_CHANNEL blank and the whole feature
+    | is a no-op: `comics:post-telegram` exits cleanly and posts nothing. This
+    | mirrors the beehiiv / Plausible pattern, the site runs fine without it.
+    |
+    | Setup: talk to @BotFather to create a bot, then add that bot to the
+    | channel as an ADMIN with "Post Messages" (a bot cannot post to a channel
+    | it does not administer). Channel goes in as @startupkatt.
+    |
+    | Distribution model: RSS (/feed) is pull, beehiiv reads it and emails.
+    | Telegram is push, we call sendPhoto ourselves. See CLAUDE.md.
+    |
+    |   catch_up_days => how far back a normal run will look for unposted
+    |                    strips. Covers a missed cron run without ever
+    |                    dredging up the archive. Use --all to backfill.
+    |   max_per_run   => throttle, Telegram rate-limits channel posts.
+    |
+    */
+
+    'telegram' => [
+        'bot_token'     => env('TELEGRAM_BOT_TOKEN'),
+        'channel'       => env('TELEGRAM_CHANNEL'),
+        'catch_up_days' => (int) env('TELEGRAM_CATCH_UP_DAYS', 3),
+        'max_per_run'   => (int) env('TELEGRAM_MAX_PER_RUN', 5),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Analytics (Plausible: cookieless, privacy-first)
     |--------------------------------------------------------------------------
     |

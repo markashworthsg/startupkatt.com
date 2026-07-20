@@ -25,6 +25,7 @@ Running gag: the cat is "Startup Katt" but everyone calls him "Startup Cat". Kee
 | Reactions (login-free voting) | `app/Http/Controllers/ReactionController.php`, `app/Models/{Reaction,ReactionVote}.php`, `resources/views/components/comic-reactions.blade.php` |
 | Top-strips leaderboard + toast | `app/Http/Controllers/TopController.php`, `resources/views/comics/top.blade.php`, `resources/views/components/top-strip-toast.blade.php` |
 | Feed / sitemap | `app/Http/Controllers/{FeedController,SitemapController}.php` |
+| Telegram push | `app/Console/Commands/PostToTelegram.php` |
 | Config (all knobs) | `config/comics.php` |
 | Reader view | `resources/views/comics/show.blade.php` |
 | Nav component | `resources/views/components/comic-nav.blade.php` |
@@ -65,6 +66,39 @@ The site runs fine without beehiiv. When the user is ready, there are three hook
 3. **Monetization.** Lives entirely in beehiiv (ads, paid subscriptions). If gating early/bonus strips, add a `is_premium` flag to `comics` and check beehiiv subscription status, but keep the canonical strip on-site for SEO.
 
 Important: the apex domain `startupkatt.com` is THIS Laravel app. beehiiv should live on a subdomain (e.g. `news.startupkatt.com`) or its free beehiiv subdomain. Do not move the apex to beehiiv.
+
+## Telegram channel (push distribution)
+
+Two distribution models coexist, don't confuse them:
+
+- **RSS is pull.** `/feed` sits there; beehiiv's RSS-to-email automation reads
+  it and sends the strip out. No code of ours runs per strip.
+- **Telegram is push.** `php artisan comics:post-telegram` calls Telegram's
+  `sendPhoto` for each newly published strip. Scheduled daily at 00:10 in
+  `routes/console.php`, right after `comics:import` at 00:05, so art dropped in
+  overnight still goes out the same day.
+
+Env-gated like beehiiv/Plausible: blank `TELEGRAM_BOT_TOKEN` or
+`TELEGRAM_CHANNEL` makes the command a clean no-op (exit 0, posts nothing).
+Setup is two steps and the second is the one people forget: create the bot via
+@BotFather, **then add it to the channel as an admin with "Post Messages"**. A
+bot cannot post to a channel it doesn't administer.
+
+Invariants worth preserving:
+
+- **`comics.telegram_posted_at` is the sole double-post guard.** Null means
+  never posted. The command is therefore safe to run as often as you like.
+  A failed send leaves it null on purpose so the next run retries.
+- **The archive is not fair game.** A normal run only looks back
+  `catch_up_days` (default 3), which absorbs a missed cron run without dumping
+  hundreds of old strips into the channel. Backfilling is opt-in via `--all`.
+- **Only published strips post** (`published()` scope), so scheduled/preview
+  strips can't leak early. `--dry-run` previews, `--limit` overrides the
+  per-run throttle.
+- Telegram fetches the image by URL, so `APP_URL` must be the real domain in
+  production or the photo won't resolve.
+
+Covered by `tests/Feature/TelegramPostTest.php`.
 
 ## Analytics (Plausible, cookieless)
 
