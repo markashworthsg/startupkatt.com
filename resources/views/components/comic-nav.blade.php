@@ -82,7 +82,9 @@
         @if(($first && $previous) || ($latest && $next))
             <div class="mt-2.5 flex items-center justify-center gap-3 text-xs text-black/45">
                 @if($first && $previous)
-                    <a href="{{ $first->url }}" rel="first" class="py-1 underline decoration-black/15 hover:text-[var(--color-katt-accent)]">&laquo; First strip</a>
+                    {{-- Pill, not a plain link: new readers landing mid-archive
+                         want an obvious way to start at #1. --}}
+                    <a href="{{ $first->url }}" rel="first" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border-2 border-black/10 bg-white font-bold text-black/70 transition hover:border-[var(--color-katt-accent)] hover:text-[var(--color-katt-accent)]">&laquo; Start from the very beginning</a>
                 @endif
                 @if(($first && $previous) && ($latest && $next))
                     <span aria-hidden="true" class="text-black/20">&middot;</span>
